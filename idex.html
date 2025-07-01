@@ -240,184 +240,6 @@
             background: #5a6fd8;
         }
 
-        /* Image Upload Section */
-        .image-upload-section {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #f8f9ff;
-            border-radius: 8px;
-            border: 2px solid #f0f4ff;
-        }
-
-        .upload-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .image-slot {
-            width: 100%;
-            height: 300px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .image-slot:hover {
-            border-color: #667eea;
-            background: #f8f9ff;
-        }
-
-        .image-slot.has-image {
-            border: 2px solid #667eea;
-        }
-
-        .image-slot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .image-placeholder {
-            color: #999;
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #ff4757;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            display: none;
-        }
-
-        .image-slot.has-image .remove-btn {
-            display: block;
-        }
-
-        /* Media Links Section */
-        .media-links {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #f8f9ff;
-            border-radius: 8px;
-        }
-
-        .media-links h5 {
-            color: #667eea;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-        }
-
-        .media-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.85rem;
-            margin: 0.25rem 0.5rem 0.25rem 0;
-            border: 1px solid #e0e6ff;
-            transition: all 0.3s ease;
-        }
-
-        .media-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        .media-link.disabled {
-            background: #f0f0f0 !important;
-            color: #999 !important;
-            cursor: not-allowed !important;
-            font-style: italic;
-            pointer-events: none !important;
-            text-decoration: none !important;
-        }
-
-        .media-link.disabled:hover {
-            background: #f0f0f0 !important;
-            color: #999 !important;
-            transform: none !important;
-        }
-
-        .link-input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin: 0.5rem 0;
-        }
-
-        .link-input {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .link-input input {
-            flex: 1;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        .link-input button {
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.3s ease;
-        }
-
-        .link-input button:hover {
-            background: #5a6fd8;
-        }
-
-        .edit-links-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .edit-links-btn:hover {
-            background: #218838;
-        }
-
         /* About Section */
         .about {
             padding: 80px 0;
@@ -519,73 +341,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .modal-main-image {
-            width: 100%;
-            max-width: 500px;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            background-color: #667eea;
-            margin: 1rem auto;
-        }
-
-        .modal-links-section {
-            background: #f8f9ff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-
-        .modal-links-section h4 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .modal-links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .modal-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            border: 1px solid #e0e6ff;
-            transition: all 0.3s ease;
-        }
-
-        .modal-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .modal-link-placeholder {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: #f0f0f0;
-            padding: 1rem;
-            border-radius: 8px;
-            color: #999;
-            border: 1px solid #ddd;
-            font-style: italic;
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -603,7 +358,24 @@
             to { opacity: 1; }
         }
 
-
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -655,68 +427,6 @@
                                 <span class="tag">System Integration</span>
                             </div>
                             <a href="javascript:void(0)" class="project-button" onclick="openModal('maruti')">View Details</a>
-                            
-                            <!-- Media Links -->
-                            <div class="media-links">
-                                <h5>📂 Project Media & Documentation</h5>
-                                <button class="edit-links-btn" onclick="toggleEditMode('maruti')">✏️ Edit Links</button>
-                                
-                                <div id="maruti-links-display">
-                                    <div class="media-link disabled" id="maruti-gallery-link">
-                                        📸 Complete Photo Gallery - Click edit to add link
-                                    </div>
-                                    <div class="media-link disabled" id="maruti-video-link">
-                                        🎥 Project Demo Video - Click edit to add link
-                                    </div>
-                                    <div class="media-link disabled" id="maruti-docs-link">
-                                        📋 Technical Documentation - Click edit to add link
-                                    </div>
-                                </div>
-                                
-                                <div id="maruti-links-edit" class="link-input-group" style="display: none;">
-                                    <div class="link-input">
-                                        <span>📸</span>
-                                        <input type="url" id="maruti-gallery-input" placeholder="Paste Google Drive link for photo gallery">
-                                        <button onclick="saveLink('maruti', 'gallery')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>🎥</span>
-                                        <input type="url" id="maruti-video-input" placeholder="Paste Google Drive link for demo video">
-                                        <button onclick="saveLink('maruti', 'video')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>📋</span>
-                                        <input type="url" id="maruti-docs-input" placeholder="Paste Google Drive link for documentation">
-                                        <button onclick="saveLink('maruti', 'docs')">Save</button>
-                                    </div>
-                                    <button onclick="toggleEditMode('maruti')" style="margin-top: 0.5rem; background: #6c757d;">Done Editing</button>
-                                </div>
-                            </div> Demo Video - Click edit to add link
-                                    </a>
-                                    <a href="#" class="media-link disabled" id="maruti-docs-link">
-                                        📋 Technical Documentation - Click edit to add link
-                                    </a>
-                                </div>
-                                
-                                <div id="maruti-links-edit" class="link-input-group" style="display: none;">
-                                    <div class="link-input">
-                                        <span>📸</span>
-                                        <input type="url" id="maruti-gallery-input" placeholder="Paste Google Drive link for photo gallery">
-                                        <button onclick="saveLink('maruti', 'gallery')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>🎥</span>
-                                        <input type="url" id="maruti-video-input" placeholder="Paste Google Drive link for demo video">
-                                        <button onclick="saveLink('maruti', 'video')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>📋</span>
-                                        <input type="url" id="maruti-docs-input" placeholder="Paste Google Drive link for documentation">
-                                        <button onclick="saveLink('maruti', 'docs')">Save</button>
-                                    </div>
-                                    <button onclick="toggleEditMode('maruti')" style="margin-top: 0.5rem; background: #6c757d;">Done Editing</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -740,43 +450,6 @@
                                 <span class="tag">Data Optimization</span>
                             </div>
                             <a href="javascript:void(0)" class="project-button" onclick="openModal('radish')">View Details</a>
-                            
-                            <!-- Media Links -->
-                            <div class="media-links">
-                                <h5>📂 Project Media & Documentation</h5>
-                                <button class="edit-links-btn" onclick="toggleEditMode('radish')">✏️ Edit Links</button>
-                                
-                                <div id="radish-links-display">
-                                    <div class="media-link disabled" id="radish-gallery-link">
-                                        📸 Experimental Setup Photos - Click edit to add link
-                                    </div>
-                                    <div class="media-link disabled" id="radish-video-link">
-                                        🎥 Process Documentation Video - Click edit to add link
-                                    </div>
-                                    <div class="media-link disabled" id="radish-docs-link">
-                                        📊 Statistical Analysis Data - Click edit to add link
-                                    </div>
-                                </div>
-                                
-                                <div id="radish-links-edit" class="link-input-group" style="display: none;">
-                                    <div class="link-input">
-                                        <span>📸</span>
-                                        <input type="url" id="radish-gallery-input" placeholder="Paste Google Drive link for experimental photos">
-                                        <button onclick="saveLink('radish', 'gallery')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>🎥</span>
-                                        <input type="url" id="radish-video-input" placeholder="Paste Google Drive link for process video">
-                                        <button onclick="saveLink('radish', 'video')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>📊</span>
-                                        <input type="url" id="radish-docs-input" placeholder="Paste Google Drive link for analysis data">
-                                        <button onclick="saveLink('radish', 'docs')">Save</button>
-                                    </div>
-                                    <button onclick="toggleEditMode('radish')" style="margin-top: 0.5rem; background: #6c757d;">Done Editing</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -801,40 +474,6 @@
                                 <span class="tag">Sensor Integration</span>
                             </div>
                             <a href="javascript:void(0)" class="project-button" onclick="openModal('fire')">View Details</a>
-                            
-                            <!-- Media Links -->
-                            <div class="media-links">
-                                <h5>📂 Project Media & Documentation</h5>
-                                <button class="edit-links-btn" onclick="toggleEditMode('fire')">✏️ Edit Links</button>
-                                
-                                <div id="fire-links-display">
-                                    <div class="media-link disabled" id="fire-gallery-link">
-                                        📸 Prototype Development Photos - Click edit to add link
-                                    </div>
-                                    <div class="media-link disabled" id="fire-docs-link">
-                                        🔧 Technical Specifications - Click edit to add link
-                                    </div>
-                                </div>
-                                
-                                <div id="fire-links-edit" class="link-input-group" style="display: none;">
-                                    <div class="link-input">
-                                        <span>📸</span>
-                                        <input type="url" id="fire-gallery-input" placeholder="Paste Google Drive link for prototype photos">
-                                        <button onclick="saveLink('fire', 'gallery')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>🎥</span>
-                                        <input type="url" id="fire-video-input" placeholder="Paste Google Drive link for demo video">
-                                        <button onclick="saveLink('fire', 'video')">Save</button>
-                                    </div>
-                                    <div class="link-input">
-                                        <span>🔧</span>
-                                        <input type="url" id="fire-docs-input" placeholder="Paste Google Drive link for technical specs">
-                                        <button onclick="saveLink('fire', 'docs')">Save</button>
-                                    </div>
-                                    <button onclick="toggleEditMode('fire')" style="margin-top: 0.5rem; background: #6c757d;">Done Editing</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -919,40 +558,6 @@
             <h2>Taguchi-Grey Relational Analysis for Radish Yield Optimization</h2>
             
             <div class="modal-section">
-                <h3>Final Project Result</h3>
-                <div class="modal-main-image" id="radish-modal-image">
-                    🌱 Upload your final project image to see it here
-                </div>
-            </div>
-            
-            <div class="modal-links-section">
-                <h4>📂 Complete Project Media & Documentation</h4>
-                <div class="modal-links-grid">
-                    <a href="#" class="modal-link-placeholder" id="radish-modal-gallery">
-                        <span>📸</span>
-                        <div>
-                            <strong>Experimental Setup & Process</strong><br>
-                            <small>Click "Edit Links" in the project card to add Google Drive link</small>
-                        </div>
-                    </a>
-                    <a href="#" class="modal-link-placeholder" id="radish-modal-video">
-                        <span>🎥</span>
-                        <div>
-                            <strong>Process Documentation Video</strong><br>
-                            <small>Click "Edit Links" in the project card to add Google Drive link</small>
-                        </div>
-                    </a>
-                    <a href="#" class="modal-link-placeholder" id="radish-modal-docs">
-                        <span>📊</span>
-                        <div>
-                            <strong>Statistical Analysis & Data</strong><br>
-                            <small>Click "Edit Links" in the project card to add Google Drive link</small>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="modal-section">
                 <h3>Project Overview</h3>
                 <p>Applied Design of Experiments (DOE) methodology using Taguchi's Orthogonal Arrays and Grey 
                 Relational Analysis to systematically optimize radish cultivation. Successfully identified the 
@@ -1027,40 +632,6 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('fire')">&times;</span>
             <h2>Functional Prototype of Modular IoT-Enabled Fire Protection Device</h2>
-            
-            <div class="modal-section">
-                <h3>Final Project Result</h3>
-                <div class="modal-main-image" id="fire-modal-image">
-                    🔥 Upload your final project image to see it here
-                </div>
-            </div>
-            
-            <div class="modal-links-section">
-                <h4>📂 Complete Project Media & Documentation</h4>
-                <div class="modal-links-grid">
-                    <a href="#" class="modal-link-placeholder" id="fire-modal-gallery">
-                        <span>📸</span>
-                        <div>
-                            <strong>Prototype Development Photos</strong><br>
-                            <small>Click "Edit Links" in the project card to add Google Drive link</small>
-                        </div>
-                    </a>
-                    <a href="#" class="modal-link-placeholder" id="fire-modal-video">
-                        <span>🎥</span>
-                        <div>
-                            <strong>System Demo & Testing Video</strong><br>
-                            <small>Click "Edit Links" in the project card to add Google Drive link</small>
-                        </div>
-                    </a>
-                    <a href="#" class="modal-link-placeholder" id="fire-modal-docs">
-                        <span>🔧</span>
-                        <div>
-                            <strong>Technical Specifications</strong><br>
-                            <small>Click "Edit Links" in the project card to add Google Drive link</small>
-                        </div>
-                    </a>
-                </div>
-            </div>
             
             <div class="modal-section">
                 <h3>Project Overview</h3>
@@ -1160,165 +731,12 @@
     </div>
 
     <script>
-        // Storage for Google Drive links
-        let projectLinks = {
-            maruti: { gallery: '', video: '', docs: '' },
-            radish: { gallery: '', video: '', docs: '' },
-            fire: { gallery: '', video: '', docs: '' }
-        };
-
-        // Toggle edit mode for links
-        function toggleEditMode(project) {
-            const displayDiv = document.getElementById(`${project}-links-display`);
-            const editDiv = document.getElementById(`${project}-links-edit`);
-            
-            if (editDiv.style.display === 'none') {
-                displayDiv.style.display = 'none';
-                editDiv.style.display = 'block';
-                
-                // Populate current values
-                document.getElementById(`${project}-gallery-input`).value = projectLinks[project].gallery;
-                document.getElementById(`${project}-video-input`).value = projectLinks[project].video;
-                document.getElementById(`${project}-docs-input`).value = projectLinks[project].docs;
-            } else {
-                displayDiv.style.display = 'block';
-                editDiv.style.display = 'none';
-            }
-        }
-
-        // Save individual link
-        function saveLink(project, type) {
-            const input = document.getElementById(`${project}-${type}-input`);
-            const url = input.value.trim();
-            
-            if (url && isValidUrl(url)) {
-                // Store the link
-                projectLinks[project][type] = url;
-                
-                // Update the display link
-                updateDisplayLink(project, type, url);
-                
-                // Update modal link
-                updateModalLink(project, type, url);
-                
-                // Save to localStorage
-                saveLinksToStorage();
-                
-                // Show success feedback
-                input.style.borderColor = '#28a745';
-                setTimeout(() => {
-                    input.style.borderColor = '#ddd';
-                }, 1000);
-            } else if (url === '') {
-                // Clear the link
-                projectLinks[project][type] = '';
-                updateDisplayLink(project, type, '');
-                updateModalLink(project, type, '');
-                saveLinksToStorage();
-            } else {
-                // Show error
-                input.style.borderColor = '#dc3545';
-                alert('Please enter a valid URL (must start with http:// or https://)');
-                setTimeout(() => {
-                    input.style.borderColor = '#ddd';
-                }, 2000);
-            }
-        }
-
-        // Validate URL
-        function isValidUrl(string) {
-            try {
-                new URL(string);
-                return string.startsWith('http://') || string.startsWith('https://');
-            } catch (_) {
-                return false;
-            }
-        }
-
-        // Update display link
-        function updateDisplayLink(project, type, url) {
-            const linkElement = document.getElementById(`${project}-${type}-link`);
-            if (!linkElement) return;
-            
-            const linkTexts = {
-                gallery: {
-                    maruti: '📸 Complete Photo Gallery',
-                    radish: '📸 Experimental Setup Photos',
-                    fire: '📸 Prototype Development Photos'
-                },
-                video: {
-                    maruti: '🎥 Project Demo Video',
-                    radish: '🎥 Process Documentation Video',
-                    fire: '🎥 System Demo & Testing Video'
-                },
-                docs: {
-                    maruti: '📋 Technical Documentation',
-                    radish: '📊 Statistical Analysis Data',
-                    fire: '🔧 Technical Specifications'
-                }
-            };
-            
-            if (url && isValidUrl(url)) {
-                // Convert to anchor element with real link
-                const newElement = document.createElement('a');
-                newElement.href = url;
-                newElement.target = '_blank';
-                newElement.rel = 'noopener noreferrer';
-                newElement.className = 'media-link';
-                newElement.textContent = linkTexts[type][project];
-                newElement.id = linkElement.id;
-                
-                // Replace the div with anchor
-                linkElement.parentNode.replaceChild(newElement, linkElement);
-            } else {
-                // Ensure it's a div element (non-clickable)
-                if (linkElement.tagName.toLowerCase() === 'a') {
-                    const newElement = document.createElement('div');
-                    newElement.className = 'media-link disabled';
-                    newElement.textContent = linkTexts[type][project] + ' - Click edit to add link';
-                    newElement.id = linkElement.id;
-                    
-                    // Replace the anchor with div
-                    linkElement.parentNode.replaceChild(newElement, linkElement);
-                } else {
-                    // It's already a div, just update content
-                    linkElement.className = 'media-link disabled';
-                    linkElement.textContent = linkTexts[type][project] + ' - Click edit to add link';
-                }
-            }
-        }
-
-        // Update modal link
-        function updateModalLink(project, type, url) {
-            const modalElement = document.getElementById(`${project}-modal-${type}`);
-            if (modalElement) {
-                if (url) {
-                    modalElement.href = url;
-                    modalElement.target = '_blank';
-                    modalElement.rel = 'noopener noreferrer';
-                    modalElement.className = 'modal-link';
-                } else {
-                    modalElement.href = '#';
-                    modalElement.removeAttribute('target');
-                    modalElement.removeAttribute('rel');
-                    modalElement.className = 'modal-link-placeholder';
-                }
-            }
-        }
-
         // Modal functionality
         function openModal(projectId) {
             const modal = document.getElementById(projectId + 'Modal');
             if (modal) {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
-            } else {
-                // If modal not found, try alternative approach
-                const alternativeModal = document.querySelector(`[id*="${projectId}"]`);
-                if (alternativeModal) {
-                    alternativeModal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
             }
         }
 
@@ -1344,7 +762,6 @@
                 e.preventDefault();
                 const href = this.getAttribute('href');
                 
-                // Only process if it's a valid hash link and not empty
                 if (href && href.length > 1 && href.startsWith('#')) {
                     const target = document.querySelector(href);
                     if (target) {
@@ -1366,41 +783,6 @@
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load saved links from localStorage
-            const savedLinks = localStorage.getItem('portfolioLinks');
-            if (savedLinks) {
-                try {
-                    const links = JSON.parse(savedLinks);
-                    projectLinks = { ...projectLinks, ...links };
-                    
-                    // Update all display links
-                    ['maruti', 'radish', 'fire'].forEach(project => {
-                        ['gallery', 'video', 'docs'].forEach(type => {
-                            if (projectLinks[project][type]) {
-                                updateDisplayLink(project, type, projectLinks[project][type]);
-                                updateModalLink(project, type, projectLinks[project][type]);
-                            }
-                        });
-                    });
-                } catch (e) {
-                    // Could not load saved links
-                }
-            }
-            
-            // Portfolio loaded successfully
-        });
-
-        // Save links to localStorage
-        function saveLinksToStorage() {
-            try {
-                localStorage.setItem('portfolioLinks', JSON.stringify(projectLinks));
-            } catch (e) {
-                // Could not save links to storage
-            }
-        }
 
         // Fullscreen functionality
         function toggleFullscreen() {
@@ -1424,5 +806,4 @@
         });
     </script>
 </body>
-</html>System Demo & Testing Video - Click edit to add link
-                                    </a>
+</html>
