@@ -234,10 +234,71 @@
             font-weight: 500;
             transition: background 0.3s ease;
             cursor: pointer;
+            margin-right: 10px;
         }
 
         .project-button:hover {
             background: #5a6fd8;
+        }
+
+        .gallery-button {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-button:hover {
+            background: #218838;
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8f9ff;
+            border-radius: 8px;
+        }
+
+        .gallery-title {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid #e0e6ff;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+            border-color: #667eea;
+        }
+
+        .no-images {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 1rem;
+            font-size: 0.8rem;
         }
 
         /* About Section */
@@ -341,6 +402,64 @@
             margin-bottom: 0.5rem;
         }
 
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Image Viewer Modal */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .image-viewer-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .image-viewer img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .image-viewer .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -374,6 +493,14 @@
             
             .container {
                 padding: 0 15px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+
+            .gallery-image {
+                height: 60px;
             }
         }
     </style>
@@ -427,6 +554,20 @@
                                 <span class="tag">System Integration</span>
                             </div>
                             <a href="javascript:void(0)" class="project-button" onclick="openModal('maruti')">View Details</a>
+                            <a href="javascript:void(0)" class="gallery-button" onclick="toggleGallery('maruti')">📸 Gallery</a>
+                            
+                            <!-- Project Gallery -->
+                            <div class="image-gallery" id="maruti-gallery" style="display: none;">
+                                <div class="gallery-title">📸 Project Images</div>
+                                <div class="gallery-grid" id="maruti-gallery-grid">
+                                    <!-- Images will be loaded here -->
+                                </div>
+                                <div class="no-images" id="maruti-no-images">
+                                    Upload your images to: <br>
+                                    <code>images/maruti-800/</code><br>
+                                    Then update the image paths in the code
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -450,6 +591,20 @@
                                 <span class="tag">Data Optimization</span>
                             </div>
                             <a href="javascript:void(0)" class="project-button" onclick="openModal('radish')">View Details</a>
+                            <a href="javascript:void(0)" class="gallery-button" onclick="toggleGallery('radish')">📸 Gallery</a>
+                            
+                            <!-- Project Gallery -->
+                            <div class="image-gallery" id="radish-gallery" style="display: none;">
+                                <div class="gallery-title">📸 Project Images</div>
+                                <div class="gallery-grid" id="radish-gallery-grid">
+                                    <!-- Images will be loaded here -->
+                                </div>
+                                <div class="no-images" id="radish-no-images">
+                                    Upload your images to: <br>
+                                    <code>images/radish-optimization/</code><br>
+                                    Then update the image paths in the code
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -474,6 +629,20 @@
                                 <span class="tag">Sensor Integration</span>
                             </div>
                             <a href="javascript:void(0)" class="project-button" onclick="openModal('fire')">View Details</a>
+                            <a href="javascript:void(0)" class="gallery-button" onclick="toggleGallery('fire')">📸 Gallery</a>
+                            
+                            <!-- Project Gallery -->
+                            <div class="image-gallery" id="fire-gallery" style="display: none;">
+                                <div class="gallery-title">📸 Project Images</div>
+                                <div class="gallery-grid" id="fire-gallery-grid">
+                                    <!-- Images will be loaded here -->
+                                </div>
+                                <div class="no-images" id="fire-no-images">
+                                    Upload your images to: <br>
+                                    <code>images/fire-protection/</code><br>
+                                    Then update the image paths in the code
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -510,18 +679,24 @@
         </section>
     </main>
 
-    <!-- Maruti 800 Modal -->
+    <!-- Project Modals -->
     <div id="marutiModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('maruti')">&times;</span>
             <h2>Mock Layout of Car Electrical System - Maruti 800</h2>
             
             <div class="modal-section">
+                <h3>Project Images</h3>
+                <div class="modal-gallery" id="maruti-modal-gallery">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="modal-section">
                 <h3>Project Overview</h3>
                 <p>Designed and constructed a comprehensive mock layout of the Maruti 800 car electrical system, 
                 demonstrating the interconnection of key automotive components including battery, alternator, 
-                starter motor, lighting systems, and control modules. This project showcased technical proficiency 
-                in automotive electrical engineering principles and system integration.</p>
+                starter motor, lighting systems, and control modules.</p>
             </div>
 
             <div class="modal-section">
@@ -535,208 +710,179 @@
                     <li><strong>Safety Systems:</strong> Horn, Wiper Motor</li>
                 </ul>
             </div>
-
-            <div class="modal-section">
-                <h3>Learning Outcomes & Skills Demonstrated</h3>
-                <ul>
-                    <li>Automotive electrical system design and integration</li>
-                    <li>Understanding of electrical circuit analysis and troubleshooting</li>
-                    <li>Knowledge of automotive wiring standards and color coding</li>
-                    <li>Component specification and selection for automotive applications</li>
-                    <li>Physical layout design and space optimization</li>
-                    <li>Project management and team collaboration</li>
-                    <li>Technical documentation and presentation skills</li>
-                </ul>
-            </div>
         </div>
     </div>
 
-    <!-- Radish Project Modal -->
     <div id="radishModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('radish')">&times;</span>
             <h2>Taguchi-Grey Relational Analysis for Radish Yield Optimization</h2>
             
             <div class="modal-section">
+                <h3>Project Images</h3>
+                <div class="modal-gallery" id="radish-modal-gallery">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="modal-section">
                 <h3>Project Overview</h3>
                 <p>Applied Design of Experiments (DOE) methodology using Taguchi's Orthogonal Arrays and Grey 
-                Relational Analysis to systematically optimize radish cultivation. Successfully identified the 
-                optimal combination of factors (Trusted Seeds + Drip Irrigation + DAP Manure) that maximizes 
-                crop yield while minimizing resource usage.</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>Experimental Factors</h3>
-                <p><strong>Factor A - Seed Variety (3 levels):</strong></p>
-                <ul>
-                    <li>Sungro Seeds</li>
-                    <li>Trusted Seeds</li>
-                    <li>Keyonic Seeds</li>
-                </ul>
-
-                <p><strong>Factor B - Irrigation Method (2 levels):</strong></p>
-                <ul>
-                    <li>Drip Irrigation</li>
-                    <li>Sprinkler Irrigation</li>
-                </ul>
-
-                <p><strong>Factor C - Manure Type (3 levels):</strong></p>
-                <ul>
-                    <li>DAP (Diammonium Phosphate)</li>
-                    <li>20-20-20 NPK</li>
-                    <li>Organic Manure</li>
-                </ul>
+                Relational Analysis to systematically optimize radish cultivation.</p>
             </div>
 
             <div class="modal-section">
                 <h3>Key Results & Achievements</h3>
-                <p><strong>Optimal Combination Identified:</strong></p>
                 <ul>
-                    <li>Seed: Trusted Seeds</li>
-                    <li>Irrigation: Drip Irrigation</li>
-                    <li>Manure: DAP</li>
-                </ul>
-
-                <p><strong>Performance Metrics:</strong></p>
-                <ul>
+                    <li>Optimal Combination: Trusted Seeds + Drip Irrigation + DAP Manure</li>
                     <li>Average Length: 14.75 cm</li>
                     <li>Quantity: 35.5 units</li>
                     <li>Weight: 2.25 kg</li>
                     <li>Grey Relational Grade: 0.8397 (highest among all treatments)</li>
                 </ul>
             </div>
-
-            <div class="modal-section">
-                <h3>Location & Setup</h3>
-                <p><strong>Location:</strong> Mandya District, KR Pete Taluk, Kikkeri Hobli, Echalaguday, Karnataka</p>
-                <p><strong>Soil Conditions:</strong> Red loamy, sandy and black mix soil</p>
-                <p><strong>Climate:</strong> 6-8 hours sun exposure, 30°C average temperature</p>
-                <p><strong>Plot Design:</strong> 18 plots (5ft × 5ft each) with randomized treatment allocation</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>Impact & Applications</h3>
-                <ul>
-                    <li>Provides farmers with data-driven guidance for maximizing radish yield</li>
-                    <li>Demonstrates practical application of DOE in agriculture</li>
-                    <li>Reduces resource waste through systematic optimization</li>
-                    <li>Promotes sustainable farming practices</li>
-                    <li>Methodology applicable to other crop optimization studies</li>
-                </ul>
-            </div>
         </div>
     </div>
 
-    <!-- Fire Protection Device Modal -->
     <div id="fireModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('fire')">&times;</span>
             <h2>Functional Prototype of Modular IoT-Enabled Fire Protection Device</h2>
             
             <div class="modal-section">
+                <h3>Project Images</h3>
+                <div class="modal-gallery" id="fire-modal-gallery">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="modal-section">
                 <h3>Project Overview</h3>
                 <p>Developed a functional prototype of a modular, IoT-enabled fire protection device that integrates 
-                real-time fire detection, directional water-based suppression, and remote alerting within a 
-                self-contained unit. Designed specifically for infrastructure-limited, high-risk environments 
-                such as large outdoor event spaces where traditional fire safety systems are inadequate.</p>
+                real-time fire detection, directional water-based suppression, and remote alerting.</p>
             </div>
 
             <div class="modal-section">
-                <h3>Technical Architecture & Components</h3>
-                <p><strong>Physical Structure:</strong></p>
-                <ul>
-                    <li>Cylindrical main structure (20" diameter, 60" height) with 360° access capability</li>
-                    <li>Rectangular base (30" × 23" × 11") housing 50L integrated water storage</li>
-                    <li>MS Steel construction (1.5-2mm thickness) with maintenance access doors</li>
-                </ul>
-
-                <p><strong>Detection System:</strong></p>
-                <ul>
-                    <li>5 IR Flame Sensors providing 180° coverage with 80cm detection radius</li>
-                    <li>Heat/flame detection with alert capabilities</li>
-                    <li>Multi-sensor triangulation for fire location determination</li>
-                </ul>
-
-                <p><strong>Suppression System:</strong></p>
-                <ul>
-                    <li>Dual-action approach: Water spray + Fire extinguisher ball launcher</li>
-                    <li>1HP Sharp Self-Priming Pump (3-4 kg/cm² pressure, 50 LPM flow)</li>
-                    <li>Directional water nozzles with 25-30 feet spray distance</li>
-                    <li>Air cannon system for fire extinguisher ball deployment</li>
-                </ul>
-            </div>
-
-            <div class="modal-section">
-                <h3>System Operation & Functionality</h3>
-                <p><strong>Detection Phase:</strong></p>
-                <ul>
-                    <li>Continuous environmental monitoring through strategic sensor placement</li>
-                    <li>IR radiation threshold detection with verification protocols</li>
-                    <li>False alarm prevention through multi-sensor verification</li>
-                </ul>
-
-                <p><strong>Alert & Targeting Phase:</strong></p>
-                <ul>
-                    <li>LED status indicators (Green→Yellow→Red progression)</li>
-                    <li>Audible buzzer activation for occupant notification</li>
-                    <li>GSM module sends SMS alerts with location and timestamp</li>
-                    <li>Automatic platform positioning toward detected fire direction</li>
-                </ul>
-
-                <p><strong>Suppression Phase:</strong></p>
-                <ul>
-                    <li>Coordinated platform rotation and nozzle elevation for optimal targeting</li>
-                    <li>Water pump activation through SSR relay control</li>
-                    <li>Regulated water flow with servo-controlled valve system</li>
-                    <li>Continuous operation until manual reset or water depletion</li>
-                </ul>
-            </div>
-
-            <div class="modal-section">
-                <h3>Industry Collaboration</h3>
-                <p><strong>Industry Partner:</strong> Vision Safety India (Verna, Goa)</p>
-                <p><strong>About Vision Safety India:</strong> Professional safety equipment supplier specializing 
-                in Marine Safety, Industrial Safety, Fire Safety Consultancy, and Workplace Breathing Air Solutions.</p>
-                
-                <p><strong>Project Investment:</strong> ₹15,670 total cost</p>
-                <ul>
-                    <li>Structural & Mechanical Materials: ₹5,782</li>
-                    <li>Electronics & Control Systems: ₹5,968</li>
-                    <li>Adhesives & Bonding Agents: ₹1,020</li>
-                    <li>Tools & Equipment: ₹2,500</li>
-                </ul>
-            </div>
-
-            <div class="modal-section">
-                <h3>Results & Applications</h3>
-                <p><strong>Successful Demonstrations:</strong></p>
+                <h3>Technical Achievements</h3>
                 <ul>
                     <li>Real-time fire detection within 80cm radius</li>
                     <li>Automated targeting and platform positioning</li>
                     <li>Effective water delivery at 20-25 meter range</li>
-                    <li>Coordinated system operation from detection to suppression</li>
                     <li>IoT connectivity and remote alerting functionality</li>
-                </ul>
-
-                <p><strong>Potential Applications:</strong></p>
-                <ul>
-                    <li>Warehouse protection with targeted suppression</li>
-                    <li>Temporary installation for outdoor events</li>
-                    <li>Commercial kitchens and workshops requiring rapid response</li>
-                    <li>Rural areas lacking traditional fire protection infrastructure</li>
-                    <li>Scalable network deployment for large-area coverage</li>
+                    <li>Industry collaboration with Vision Safety India</li>
                 </ul>
             </div>
         </div>
     </div>
 
+    <!-- Image Viewer Modal -->
+    <div id="imageViewer" class="image-viewer">
+        <span class="close" onclick="closeImageViewer()">&times;</span>
+        <div class="image-viewer-content">
+            <img id="viewerImage" src="" alt="Project Image">
+        </div>
+    </div>
+
     <script>
+        // Project images configuration
+        const projectImages = {
+            maruti: [
+                // Add your image paths here after uploading
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/maruthi-800/final%20prototype.jpg',
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/maruthi-800/team%20pic.jpg',
+                // 'images/maruti-800/wiring-diagram.jpg',
+                // 'images/maruti-800/final-layout.jpg'
+            ],
+            radish: [
+                // Add your image paths here after uploading
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/radish-optimization/FINAL%20RESULTS.jpeg',
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/radish-optimization/IMG_4616.JPG',
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/radish-optimization/PLOT.JPG',
+                // 'images/radish-optimization/final-results.jpg'
+            ],
+            fire: [
+                // Add your image paths here after uploading
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/images/fire-protection/final%20prototype.jpg',
+                // 'https://github.com/Chiranthck/chiranth-engineering-portfolio/blob/main/images/images/fire-protection/circuit_image%20(3).png',
+                // 'images/fire-protection/control-system.jpg',
+                // 'images/fire-protection/testing-phase.jpg'
+            ]
+        };
+
+        // Load project gallery
+        function loadGallery(project) {
+            const images = projectImages[project];
+            const galleryGrid = document.getElementById(`${project}-gallery-grid`);
+            const noImagesDiv = document.getElementById(`${project}-no-images`);
+            const modalGallery = document.getElementById(`${project}-modal-gallery`);
+
+            if (images && images.length > 0) {
+                // Hide no-images message
+                noImagesDiv.style.display = 'none';
+                
+                // Clear existing content
+                galleryGrid.innerHTML = '';
+                if (modalGallery) modalGallery.innerHTML = '';
+
+                // Add images to gallery
+                images.forEach((imagePath, index) => {
+                    // Card gallery thumbnail
+                    const galleryImage = document.createElement('div');
+                    galleryImage.className = 'gallery-image';
+                    galleryImage.style.backgroundImage = `url(${imagePath})`;
+                    galleryImage.onclick = () => openImageViewer(imagePath);
+                    galleryGrid.appendChild(galleryImage);
+
+                    // Modal gallery image
+                    if (modalGallery) {
+                        const modalImage = document.createElement('img');
+                        modalImage.src = imagePath;
+                        modalImage.alt = `${project} project image ${index + 1}`;
+                        modalImage.onclick = () => openImageViewer(imagePath);
+                        modalGallery.appendChild(modalImage);
+                    }
+                });
+            } else {
+                // Show no-images message
+                noImagesDiv.style.display = 'block';
+            }
+        }
+
+        // Toggle gallery visibility
+        function toggleGallery(project) {
+            const gallery = document.getElementById(`${project}-gallery`);
+            if (gallery.style.display === 'none') {
+                gallery.style.display = 'block';
+                loadGallery(project);
+            } else {
+                gallery.style.display = 'none';
+            }
+        }
+
+        // Open image viewer
+        function openImageViewer(imageSrc) {
+            const viewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+            viewerImage.src = imageSrc;
+            viewer.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close image viewer
+        function closeImageViewer() {
+            const viewer = document.getElementById('imageViewer');
+            viewer.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         // Modal functionality
         function openModal(projectId) {
             const modal = document.getElementById(projectId + 'Modal');
             if (modal) {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                // Load modal gallery
+                loadGallery(projectId);
             }
         }
 
@@ -748,9 +894,9 @@
             }
         }
 
-        // Close modal when clicking outside
+        // Close modals when clicking outside
         window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
+            if (event.target.classList.contains('modal') || event.target.classList.contains('image-viewer')) {
                 event.target.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
@@ -803,6 +949,12 @@
             } else {
                 btn.textContent = '⛶ Fullscreen';
             }
+        });
+
+        // Initialize galleries on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Galleries will load when clicked
+            console.log('Portfolio loaded successfully!');
         });
     </script>
 </body>
