@@ -1,1444 +1,337 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chiranth K - Engineering Portfolio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #667eea;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #667eea;
+    }
+    .hero {
+      padding: 120px 0 80px;
+      text-align: center;
+      color: white;
+    }
+    .cta-button {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .cta-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    .projects {
+      padding: 80px 0;
+      background: white;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #333;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    .project-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      background-color: #667eea;
+    }
+    .project-image-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+    .project-card:hover .project-image-text {
+      opacity: 1;
+    }
+    .project-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #333;
+      line-height: 1.3;
+    }
+    .project-description {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tag {
+      background: #f0f4ff;
+      color: #667eea;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .project-button {
+      background: #667eea;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+      cursor: pointer;
+      border: none;
+      align-self: flex-start;
+    }
+    .project-button:hover {
+      background: #5a6fd8;
+    }
+    .about {
+      padding: 80px 0;
+      background: #f8f9ff;
+    }
+    .about-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .about-text {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    .skills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .skill {
+      background: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      color: #333;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Chiranth K - Engineering Portfolio&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1200px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Header */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.95);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav ul {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>nav a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Hero Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 120px 0 80px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero h1 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeInUp 1s ease forwards;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero p {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeInUp 1s ease 0.2s forwards;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.2);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid rgba(255, 255, 255, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeInUp 1s ease 0.4s forwards;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.cta-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Projects Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.projects {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 80px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.section-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.projects-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #f0f0f0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-10px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-image {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 250px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-size: cover;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-position: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-repeat: no-repeat;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-image::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: opacity 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-card:hover .project-image::before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-image-text {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translate(-50%, -50%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: opacity 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-card:hover .project-image-text {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.3rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.3;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-description {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #666;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-tags {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.tag {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f0f4ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.3rem 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: background 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.project-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #5a6fd8;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Image Upload Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-upload-section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f8f9ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #f0f4ff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.upload-title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-slot {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 300px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px dashed #ccc;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-slot:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f8f9ff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-slot.has-image {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-slot img {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>object-fit: cover;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-placeholder {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #999;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.remove-btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #ff4757;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.image-slot.has-image .remove-btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Media Links Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.media-links {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f8f9ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.media-links h5 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.media-link {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.5rem 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.85rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0.25rem 0.5rem 0.25rem 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #e0e6ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.media-link:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-1px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.media-link.disabled {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f0f0f0 !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #999 !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: not-allowed !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none !important;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.media-link.disabled:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f0f0f0 !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #999 !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: none !important;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.link-input-group {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0.5rem 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.link-input {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.link-input input {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.link-input button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.5rem 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: background 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.link-input button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #5a6fd8;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.edit-links-btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #28a745;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.4rem 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.edit-links-btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #218838;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* About Section */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.about {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 80px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f8f9ff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.about-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.about-text {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #666;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.skills {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.skill {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.8rem 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Modal Styles */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(0,0,0,0.8);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 3% auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 1000px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-height: 85vh;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow-y: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.close {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>float: right;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.close:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal h2 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-right: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-section h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid #f0f4ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-section ul {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-left: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-section li {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-main-image {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 500px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-size: cover;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-position: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 1rem auto;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-links-section {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f8f9ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 1.5rem 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-links-section h4 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-links-grid {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-link {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #e0e6ff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-link:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #667eea;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-link-placeholder {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gap: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f0f0f0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #999;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-style: italic;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Animations */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeInUp {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>from {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(30px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>to {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(0);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="logo"&gt;Chiranth K - Portfolio&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#projects"&gt;Projects&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;button id="fullscreen-btn" onclick="toggleFullscreen()" style="background: none; border: 1px solid #667eea; color: #667eea; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;"&gt;⛶ Fullscreen&lt;/button&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="home" class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1&gt;Engineering Innovation Portfolio&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Showcasing systematic problem-solving through Design of Experiments, IoT Development, and Engineering Analysis&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="javascript:void(0)" class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"&gt;View My Projects&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="projects" class="projects"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="section-title"&gt;Featured Projects&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="projects-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Maruti 800 Project --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="project-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="project-image" id="maruti-main-image"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="project-image-text"&gt;View Project Details&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;🚗 Maruti 800 Electrical System&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="project-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="project-title"&gt;Mock Layout of Car Electrical System - Maruti 800&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="project-description"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>Comprehensive physical layout demonstrating automotive electrical system interconnections<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>including battery, alternator, starter motor, lighting systems, and control modules with<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>proper wiring standards and component integration.</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="project-tags"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Automobile Engineering&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Electrical Systems&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Wiring Standards&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;System Integration&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="javascript:void(0)" class="project-button" onclick="openModal('maruti')"&gt;View Details&lt;/a&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                            </span></p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Media Links --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="media-links"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h5&gt;📂 Project Media &amp; Documentation&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button class="edit-links-btn" onclick="toggleEditMode('maruti')"&gt;✏️ Edit Links&lt;/button&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="maruti-links-display"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="maruti-gallery-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>📸 Complete Photo Gallery - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="maruti-video-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>🎥 Project Demo Video - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="maruti-docs-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>📋 Technical Documentation - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="maruti-links-edit" class="link-input-group" style="display: none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📸&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="maruti-gallery-input" placeholder="Paste Google Drive link for photo gallery"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('maruti', 'gallery')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;🎥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="maruti-video-input" placeholder="Paste Google Drive link for demo video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('maruti', 'video')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📋&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="maruti-docs-input" placeholder="Paste Google Drive link for documentation"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('maruti', 'docs')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleEditMode('maruti')" style="margin-top: 0.5rem; background: #6c757d;"&gt;Done Editing&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt; Demo Video - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;a href="#" class="media-link disabled" id="maruti-docs-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>📋 Technical Documentation - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="maruti-links-edit" class="link-input-group" style="display: none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📸&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="maruti-gallery-input" placeholder="Paste Google Drive link for photo gallery"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('maruti', 'gallery')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;🎥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="maruti-video-input" placeholder="Paste Google Drive link for demo video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('maruti', 'video')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📋&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="maruti-docs-input" placeholder="Paste Google Drive link for documentation"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('maruti', 'docs')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleEditMode('maruti')" style="margin-top: 0.5rem; background: #6c757d;"&gt;Done Editing&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Radish Optimization Project --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="project-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="project-image" id="radish-main-image"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="project-image-text"&gt;View Project Details&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;🌱 Radish Yield Optimization&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="project-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="project-title"&gt;Taguchi-Grey Relational Analysis for Radish Yield Optimization&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="project-description"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>Applied Design of Experiments methodology using Taguchi's Orthogonal Arrays and<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>Grey Relational Analysis to optimize radish cultivation, identifying optimal<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>combination of seed variety, irrigation method, and manure type.</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="project-tags"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Design of Experiments&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Statistical Analysis&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Agricultural Engineering&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Data Optimization&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="javascript:void(0)" class="project-button" onclick="openModal('radish')"&gt;View Details&lt;/a&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                            </span></p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Media Links --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="media-links"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h5&gt;📂 Project Media &amp; Documentation&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button class="edit-links-btn" onclick="toggleEditMode('radish')"&gt;✏️ Edit Links&lt;/button&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="radish-links-display"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="radish-gallery-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>📸 Experimental Setup Photos - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="radish-video-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>🎥 Process Documentation Video - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="radish-docs-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>📊 Statistical Analysis Data - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="radish-links-edit" class="link-input-group" style="display: none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📸&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="radish-gallery-input" placeholder="Paste Google Drive link for experimental photos"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('radish', 'gallery')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;🎥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="radish-video-input" placeholder="Paste Google Drive link for process video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('radish', 'video')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📊&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="radish-docs-input" placeholder="Paste Google Drive link for analysis data"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('radish', 'docs')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleEditMode('radish')" style="margin-top: 0.5rem; background: #6c757d;"&gt;Done Editing&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Fire Protection Device --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="project-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="project-image" id="fire-main-image"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="project-image-text"&gt;View Project Details&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;🔥 IoT Fire Protection System&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="project-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="project-title"&gt;Functional Prototype of Modular IoT-Enabled Fire Protection Device&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="project-description"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>Developed autonomous fire protection system integrating real-time detection,<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>directional water suppression, and remote alerting in a self-contained unit<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>for infrastructure-limited environments.</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="project-tags"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;IoT Development&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Automation&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Fire Safety&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Raspberry Pi&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="tag"&gt;Sensor Integration&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="javascript:void(0)" class="project-button" onclick="openModal('fire')"&gt;View Details&lt;/a&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                            </span></p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;!-- Media Links --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="media-links"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h5&gt;📂 Project Media &amp; Documentation&lt;/h5&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button class="edit-links-btn" onclick="toggleEditMode('fire')"&gt;✏️ Edit Links&lt;/button&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="fire-links-display"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="fire-gallery-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>📸 Prototype Development Photos - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="media-link disabled" id="fire-docs-link"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>🔧 Technical Specifications - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                                </span></p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div id="fire-links-edit" class="link-input-group" style="display: none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;📸&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="fire-gallery-input" placeholder="Paste Google Drive link for prototype photos"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('fire', 'gallery')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;🎥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="fire-video-input" placeholder="Paste Google Drive link for demo video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('fire', 'video')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="link-input"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;🔧&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="url" id="fire-docs-input" placeholder="Paste Google Drive link for technical specs"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button onclick="saveLink('fire', 'docs')"&gt;Save&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleEditMode('fire')" style="margin-top: 0.5rem; background: #6c757d;"&gt;Done Editing&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="about" class="about"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="section-title"&gt;About Me&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="about-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="about-text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>I am an engineering student passionate about applying systematic methodologies<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>to solve real-world problems. My projects demonstrate proficiency in experimental<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>design, statistical analysis, IoT development, and practical implementation across<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>diverse engineering domains.</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="about-text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>Through hands-on research, data-driven approaches, and innovative technology solutions,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>I aim to contribute to sustainable engineering solutions that make a meaningful impact<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>on society and public safety.</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="skills"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Design of Experiments&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;IoT Development&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Statistical Analysis&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Electrical Systems&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Automation&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Data Optimization&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Research Methodology&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="skill"&gt;Technical Documentation&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Maruti 800 Modal --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="marutiModal" class="modal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close" onclick="closeModal('maruti')"&gt;&amp;times;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Mock Layout of Car Electrical System - Maruti 800&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Project Overview&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Designed and constructed a comprehensive mock layout of the Maruti 800 car electrical system,<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>demonstrating the interconnection of key automotive components including battery, alternator,<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>starter motor, lighting systems, and control modules. This project showcased technical proficiency<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>in automotive electrical engineering principles and system integration.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Key Components Implemented&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;strong&gt;Power Generation &amp; Storage:&lt;/strong&gt; Battery, Generator Assembly, Alternator&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;strong&gt;Engine Systems:&lt;/strong&gt; Starter Motor Assembly, Distributor, Spark Plug&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;strong&gt;Lighting Systems:&lt;/strong&gt; Headlights, Tail Lamps, Indicators, Interior Lighting&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;strong&gt;Control Systems:&lt;/strong&gt; Combination Switch, Steering Lock, Relays&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;strong&gt;Monitoring:&lt;/strong&gt; Fuel Gauge Assembly, Multi-meter&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;&lt;strong&gt;Safety Systems:&lt;/strong&gt; Horn, Wiper Motor&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Learning Outcomes &amp; Skills Demonstrated&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automotive electrical system design and integration&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Understanding of electrical circuit analysis and troubleshooting&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Knowledge of automotive wiring standards and color coding&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Component specification and selection for automotive applications&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Physical layout design and space optimization&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Project management and team collaboration&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Technical documentation and presentation skills&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Radish Project Modal --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="radishModal" class="modal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close" onclick="closeModal('radish')"&gt;&amp;times;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Taguchi-Grey Relational Analysis for Radish Yield Optimization&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Final Project Result&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="modal-main-image" id="radish-modal-image"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>🌱 Upload your final project image to see it here</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-links-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h4&gt;📂 Complete Project Media &amp; Documentation&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="modal-links-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="modal-link-placeholder" id="radish-modal-gallery"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;📸&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Experimental Setup &amp; Process&lt;/strong&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;small&gt;Click "Edit Links" in the project card to add Google Drive link&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="modal-link-placeholder" id="radish-modal-video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;🎥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Process Documentation Video&lt;/strong&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;small&gt;Click "Edit Links" in the project card to add Google Drive link&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="modal-link-placeholder" id="radish-modal-docs"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;📊&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Statistical Analysis &amp; Data&lt;/strong&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;small&gt;Click "Edit Links" in the project card to add Google Drive link&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Project Overview&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Applied Design of Experiments (DOE) methodology using Taguchi's Orthogonal Arrays and Grey<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>Relational Analysis to systematically optimize radish cultivation. Successfully identified the<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>optimal combination of factors (Trusted Seeds + Drip Irrigation + DAP Manure) that maximizes<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>crop yield while minimizing resource usage.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Experimental Factors&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Factor A - Seed Variety (3 levels):&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Sungro Seeds&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Trusted Seeds&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Keyonic Seeds&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Factor B - Irrigation Method (2 levels):&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Drip Irrigation&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Sprinkler Irrigation&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Factor C - Manure Type (3 levels):&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;DAP (Diammonium Phosphate)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;20-20-20 NPK&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Organic Manure&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Key Results &amp; Achievements&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Optimal Combination Identified:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Seed: Trusted Seeds&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Irrigation: Drip Irrigation&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Manure: DAP&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Performance Metrics:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Average Length: 14.75 cm&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Quantity: 35.5 units&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Weight: 2.25 kg&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Grey Relational Grade: 0.8397 (highest among all treatments)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Location &amp; Setup&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Mandya District, KR Pete Taluk, Kikkeri Hobli, Echalaguday, Karnataka&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Soil Conditions:&lt;/strong&gt; Red loamy, sandy and black mix soil&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Climate:&lt;/strong&gt; 6-8 hours sun exposure, 30°C average temperature&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Plot Design:&lt;/strong&gt; 18 plots (5ft × 5ft each) with randomized treatment allocation&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Impact &amp; Applications&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Provides farmers with data-driven guidance for maximizing radish yield&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Demonstrates practical application of DOE in agriculture&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Reduces resource waste through systematic optimization&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Promotes sustainable farming practices&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Methodology applicable to other crop optimization studies&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Fire Protection Device Modal --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="fireModal" class="modal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close" onclick="closeModal('fire')"&gt;&amp;times;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Functional Prototype of Modular IoT-Enabled Fire Protection Device&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Final Project Result&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="modal-main-image" id="fire-modal-image"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>🔥 Upload your final project image to see it here</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-links-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h4&gt;📂 Complete Project Media &amp; Documentation&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="modal-links-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="modal-link-placeholder" id="fire-modal-gallery"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;📸&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Prototype Development Photos&lt;/strong&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;small&gt;Click "Edit Links" in the project card to add Google Drive link&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="modal-link-placeholder" id="fire-modal-video"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;🎥&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;System Demo &amp; Testing Video&lt;/strong&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;small&gt;Click "Edit Links" in the project card to add Google Drive link&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="modal-link-placeholder" id="fire-modal-docs"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;🔧&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Technical Specifications&lt;/strong&gt;&lt;br&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;small&gt;Click "Edit Links" in the project card to add Google Drive link&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Project Overview&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Developed a functional prototype of a modular, IoT-enabled fire protection device that integrates<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>real-time fire detection, directional water-based suppression, and remote alerting within a<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>self-contained unit. Designed specifically for infrastructure-limited, high-risk environments<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>such as large outdoor event spaces where traditional fire safety systems are inadequate.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Technical Architecture &amp; Components&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Physical Structure:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Cylindrical main structure (20" diameter, 60" height) with 360° access capability&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Rectangular base (30" × 23" × 11") housing 50L integrated water storage&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;MS Steel construction (1.5-2mm thickness) with maintenance access doors&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Detection System:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;5 IR Flame Sensors providing 180° coverage with 80cm detection radius&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Heat/flame detection with alert capabilities&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Multi-sensor triangulation for fire location determination&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Suppression System:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Dual-action approach: Water spray + Fire extinguisher ball launcher&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;1HP Sharp Self-Priming Pump (3-4 kg/cm² pressure, 50 LPM flow)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Directional water nozzles with 25-30 feet spray distance&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Air cannon system for fire extinguisher ball deployment&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;System Operation &amp; Functionality&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Detection Phase:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Continuous environmental monitoring through strategic sensor placement&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;IR radiation threshold detection with verification protocols&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;False alarm prevention through multi-sensor verification&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Alert &amp; Targeting Phase:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;LED status indicators (Green→Yellow→Red progression)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Audible buzzer activation for occupant notification&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;GSM module sends SMS alerts with location and timestamp&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automatic platform positioning toward detected fire direction&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Suppression Phase:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Coordinated platform rotation and nozzle elevation for optimal targeting&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Water pump activation through SSR relay control&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Regulated water flow with servo-controlled valve system&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Continuous operation until manual reset or water depletion&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Industry Collaboration&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Industry Partner:&lt;/strong&gt; Vision Safety India (Verna, Goa)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;About Vision Safety India:&lt;/strong&gt; Professional safety equipment supplier specializing<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>in Marine Safety, Industrial Safety, Fire Safety Consultancy, and Workplace Breathing Air Solutions.&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Project Investment:&lt;/strong&gt; ₹15,670 total cost&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Structural &amp; Mechanical Materials: ₹5,782&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Electronics &amp; Control Systems: ₹5,968&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Adhesives &amp; Bonding Agents: ₹1,020&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Tools &amp; Equipment: ₹2,500&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="modal-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;Results &amp; Applications&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Successful Demonstrations:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Real-time fire detection within 80cm radius&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Automated targeting and platform positioning&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Effective water delivery at 20-25 meter range&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Coordinated system operation from detection to suppression&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;IoT connectivity and remote alerting functionality&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&lt;strong&gt;Potential Applications:&lt;/strong&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Warehouse protection with targeted suppression&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Temporary installation for outdoor events&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Commercial kitchens and workshops requiring rapid response&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Rural areas lacking traditional fire protection infrastructure&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li&gt;Scalable network deployment for large-area coverage&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Storage for Google Drive links</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let projectLinks = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>maruti: { gallery: '', video: '', docs: '' },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>radish: { gallery: '', video: '', docs: '' },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>fire: { gallery: '', video: '', docs: '' }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Toggle edit mode for links</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function toggleEditMode(project) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const displayDiv = document.getElementById(`${project}-links-display`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const editDiv = document.getElementById(`${project}-links-edit`);</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (editDiv.style.display === 'none') {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>displayDiv.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>editDiv.style.display = 'block';</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Populate current values</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById(`${project}-gallery-input`).value = projectLinks[project].gallery;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById(`${project}-video-input`).value = projectLinks[project].video;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById(`${project}-docs-input`).value = projectLinks[project].docs;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>displayDiv.style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>editDiv.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Save individual link</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function saveLink(project, type) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const input = document.getElementById(`${project}-${type}-input`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const url = input.value.trim();</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (url &amp;&amp; isValidUrl(url)) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Store the link</p>
-<p class="p1"><span class="Apple-converted-space">                </span>projectLinks[project][type] = url;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Update the display link</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updateDisplayLink(project, type, url);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Update modal link</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updateModalLink(project, type, url);</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Save to localStorage</p>
-<p class="p1"><span class="Apple-converted-space">                </span>saveLinksToStorage();</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Show success feedback</p>
-<p class="p1"><span class="Apple-converted-space">                </span>input.style.borderColor = '#28a745';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>input.style.borderColor = '#ddd';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}, 1000);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else if (url === '') {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Clear the link</p>
-<p class="p1"><span class="Apple-converted-space">                </span>projectLinks[project][type] = '';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updateDisplayLink(project, type, '');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>updateModalLink(project, type, '');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>saveLinksToStorage();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Show error</p>
-<p class="p1"><span class="Apple-converted-space">                </span>input.style.borderColor = '#dc3545';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>alert('Please enter a valid URL (must start with http:// or https://)');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>input.style.borderColor = '#ddd';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}, 2000);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Validate URL</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function isValidUrl(string) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>new URL(string);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return string.startsWith('http://') || string.startsWith('https://');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (_) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return false;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Update display link</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function updateDisplayLink(project, type, url) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const linkElement = document.getElementById(`${project}-${type}-link`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!linkElement) return;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const linkTexts = {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>gallery: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>maruti: '📸 Complete Photo Gallery',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>radish: '📸 Experimental Setup Photos',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>fire: '📸 Prototype Development Photos'</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>video: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>maruti: '🎥 Project Demo Video',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>radish: '🎥 Process Documentation Video',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>fire: '🎥 System Demo &amp; Testing Video'</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>docs: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>maruti: '📋 Technical Documentation',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>radish: '📊 Statistical Analysis Data',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>fire: '🔧 Technical Specifications'</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (url &amp;&amp; isValidUrl(url)) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Convert to anchor element with real link</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const newElement = document.createElement('a');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newElement.href = url;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newElement.target = '_blank';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newElement.rel = 'noopener noreferrer';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newElement.className = 'media-link';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newElement.textContent = linkTexts[type][project];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>newElement.id = linkElement.id;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Replace the div with anchor</p>
-<p class="p1"><span class="Apple-converted-space">                </span>linkElement.parentNode.replaceChild(newElement, linkElement);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Ensure it's a div element (non-clickable)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (linkElement.tagName.toLowerCase() === 'a') {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const newElement = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>newElement.className = 'media-link disabled';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>newElement.textContent = linkTexts[type][project] + ' - Click edit to add link';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>newElement.id = linkElement.id;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Replace the anchor with div</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>linkElement.parentNode.replaceChild(newElement, linkElement);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// It's already a div, just update content</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>linkElement.className = 'media-link disabled';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>linkElement.textContent = linkTexts[type][project] + ' - Click edit to add link';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Update modal link</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function updateModalLink(project, type, url) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const modalElement = document.getElementById(`${project}-modal-${type}`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (modalElement) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (url) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.href = url;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.target = '_blank';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.rel = 'noopener noreferrer';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.className = 'modal-link';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.href = '#';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.removeAttribute('target');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.removeAttribute('rel');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>modalElement.className = 'modal-link-placeholder';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Modal functionality</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function openModal(projectId) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById(projectId + 'Modal');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (modal) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>modal.style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.body.style.overflow = 'hidden';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// If modal not found, try alternative approach</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const alternativeModal = document.querySelector(`[id*="${projectId}"]`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (alternativeModal) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>alternativeModal.style.display = 'block';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.body.style.overflow = 'hidden';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function closeModal(projectId) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById(projectId + 'Modal');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (modal) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>modal.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.body.style.overflow = 'auto';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Close modal when clicking outside</p>
-<p class="p1"><span class="Apple-converted-space">        </span>window.addEventListener('click', function(event) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (event.target.classList.contains('modal')) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>event.target.style.display = 'none';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.body.style.overflow = 'auto';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Smooth scrolling for navigation links</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('a[href^="#"]').forEach(anchor =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>anchor.addEventListener('click', function (e) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const href = this.getAttribute('href');</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Only process if it's a valid hash link and not empty</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (href &amp;&amp; href.length &gt; 1 &amp;&amp; href.startsWith('#')) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const target = document.querySelector(href);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (target) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>target.scrollIntoView({</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>behavior: 'smooth',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>block: 'start'</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Add scroll effect to header</p>
-<p class="p1"><span class="Apple-converted-space">        </span>window.addEventListener('scroll', function() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const header = document.querySelector('header');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (window.scrollY &gt; 100) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>header.style.background = 'rgba(255, 255, 255, 0.98)';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>header.style.background = 'rgba(255, 255, 255, 0.95)';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Initialize on page load</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Load saved links from localStorage</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const savedLinks = localStorage.getItem('portfolioLinks');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (savedLinks) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const links = JSON.parse(savedLinks);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>projectLinks = { ...projectLinks, ...links };</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Update all display links</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>['maruti', 'radish', 'fire'].forEach(project =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>['gallery', 'video', 'docs'].forEach(type =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>if (projectLinks[project][type]) {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>updateDisplayLink(project, type, projectLinks[project][type]);</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>updateModalLink(project, type, projectLinks[project][type]);</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} catch (e) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Could not load saved links</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Portfolio loaded successfully</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Save links to localStorage</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function saveLinksToStorage() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem('portfolioLinks', JSON.stringify(projectLinks));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (e) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Could not save links to storage</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Fullscreen functionality</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function toggleFullscreen() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!document.fullscreenElement) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.documentElement.requestFullscreen().catch(err =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>alert(`Error attempting to enable fullscreen: ${err.message}`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.exitFullscreen();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Update fullscreen button text</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('fullscreenchange', function() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const btn = document.getElementById('fullscreen-btn');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (document.fullscreenElement) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>btn.textContent = '⛶ Exit Fullscreen';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>btn.textContent = '⛶ Fullscreen';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;System Demo &amp; Testing Video - Click edit to add link</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/a&gt;</p>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Chiranth K - Portfolio</div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Engineering Innovation Portfolio</h1>
+        <p>Showcasing systematic problem-solving through Design of Experiments, IoT Development, and Engineering Analysis.</p>
+        <a href="#projects" class="cta-button">See Projects</a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <!-- Project 1 Example -->
+          <div class="project-card">
+            <div class="project-image">
+              <span>🚗 Maruti 800 Electrical System</span>
+              <div class="project-image-text">View Project Details</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Mock Layout of Car Electrical System - Maruti 800</h3>
+              <p class="project-description">
+                Comprehensive physical layout demonstrating automotive electrical system interconnections including battery, alternator, starter motor, lighting systems, and control modules with proper wiring standards and component integration.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Automobile Engineering</span>
+                <span class="tag">Electrical Systems</span>
+                <span class="tag">Wiring Standards</span>
+                <span class="tag">System Integration</span>
+              </div>
+              <a href="#" class="project-button">View Details</a>
+            </div>
+          </div>
+          <!-- Project 2 Example -->
+          <div class="project-card">
+            <div class="project-image">
+              <span>🌱 Radish Yield Optimization</span>
+              <div class="project-image-text">View Project Details</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Taguchi-Grey Relational Analysis for Radish Yield Optimization</h3>
+              <p class="project-description">
+                Applied Design of Experiments methodology using Taguchi's Orthogonal Arrays and Grey Relational Analysis to optimize radish cultivation, identifying optimal combination of seed variety, irrigation method, and manure type.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Design of Experiments</span>
+                <span class="tag">Statistical Analysis</span>
+                <span class="tag">Agricultural Engineering</span>
+                <span class="tag">Data Optimization</span>
+              </div>
+              <a href="#" class="project-button">View Details</a>
+            </div>
+          </div>
+          <!-- Project 3 Example -->
+          <div class="project-card">
+            <div class="project-image">
+              <span>🔥 IoT Fire Protection System</span>
+              <div class="project-image-text">View Project Details</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Functional Prototype of Modular IoT-Enabled Fire Protection Device</h3>
+              <p class="project-description">
+                Developed autonomous fire protection system integrating real-time detection, directional water suppression, and remote alerting in a self-contained unit for infrastructure-limited environments.
+              </p>
+              <div class="project-tags">
+                <span class="tag">IoT Development</span>
+                <span class="tag">Automation</span>
+                <span class="tag">Fire Safety</span>
+                <span class="tag">Sensor Integration</span>
+              </div>
+              <a href="#" class="project-button">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p class="about-text">
+            I am an engineering student passionate about applying systematic methodologies to solve real-world problems. My projects demonstrate proficiency in experimental design, statistical analysis, IoT development, and practical implementation across diverse engineering domains.
+          </p>
+          <p class="about-text">
+            Through hands-on research, data-driven approaches, and innovative technology solutions, I aim to contribute to sustainable engineering solutions that make a meaningful impact on society and public safety.
+          </p>
+          <div class="skills">
+            <span class="skill">Design of Experiments</span>
+            <span class="skill">IoT Development</span>
+            <span class="skill">Statistical Analysis</span>
+            <span class="skill">Electrical Systems</span>
+            <span class="skill">Automation</span>
+            <span class="skill">Data Optimization</span>
+            <span class="skill">Research Methodology</span>
+            <span class="skill">Technical Documentation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
