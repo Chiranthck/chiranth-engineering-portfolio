@@ -225,14 +225,14 @@ dialog[open]{animation:pop .22s ease-out}
       </button>
       <div>
         <div class="badges"><span class="badge">Software</span><span class="badge">Live app</span></div>
-        <h3>6-Day Split Tracker</h3>
-        <p>An installable web app I built to run my own training: a six-day double muscle group split, organised as a four-week block that ends in a deload week. Sign in on any device and your log stays in sync.</p>
+        <h3>6-Day Split Tracker: training and nutrition app</h3>
+        <p>A self-hosted web app I built to replace the spreadsheet I logged lifts in. I define my own program, weight targets rise only when I actually hit them, meals are logged from a photo, and the data stays mine. It installs on a phone, works offline and syncs between phone and laptop.</p>
         <dl class="result">
-          <div><dt>6 days</dt><dd>double muscle group split</dd></div>
-          <div><dt>4 weeks</dt><dd>training block with deload</dd></div>
-          <div><dt>Synced</dt><dd>accounts across devices</dd></div>
+          <div><dt>13 tables</dt><dd>with per-user row-level security</dd></div>
+          <div><dt>Earned</dt><dd>weight progression</dd></div>
+          <div><dt>Photo</dt><dd>to macros for meals</dd></div>
         </dl>
-        <ul class="tags"><li>Progressive web app</li><li>User accounts</li><li>Cloud sync</li><li>Product design</li></ul>
+        <ul class="tags"><li>JavaScript</li><li>Supabase / Postgres</li><li>Edge Functions</li><li>Anthropic API</li><li>Offline PWA</li></ul>
         <div class="hero-actions" style="margin-top:0">
           <a class="btn primary" href="https://ckhyrox.netlify.app" target="_blank" rel="noopener">Open the app</a>
           <button class="btn" data-open="dlg-fitness">Read the details</button>
@@ -297,7 +297,7 @@ dialog[open]{animation:pop .22s ease-out}
     <div class="skills">
       <div><h3>Methods</h3><ul><li>Design of experiments</li><li>Taguchi method</li><li>Grey relational analysis</li><li>Statistical analysis</li></ul></div>
       <div><h3>Hardware</h3><ul><li>Raspberry Pi and microcontrollers</li><li>Sensors and actuators</li><li>Automotive electrical systems</li><li>Pumps and irrigation</li></ul></div>
-      <div><h3>Software</h3><ul><li>Python</li><li>ROS 2</li><li>IoT alerting</li><li>App development</li></ul></div>
+      <div><h3>Software</h3><ul><li>JavaScript and web apps</li><li>Postgres and Supabase</li><li>Python and ROS 2</li><li>IoT and LLM APIs</li></ul></div>
       <div><h3>Operations</h3><ul><li>Plant maintenance</li><li>Farm management</li><li>Technical documentation</li><li>Patent prosecution</li></ul></div>
     </div>
   </div>
@@ -343,18 +343,33 @@ dialog[open]{animation:pop .22s ease-out}
 </dialog>
 
 <dialog id="dlg-fitness" aria-labelledby="t-fitness">
-  <div class="dlg-head"><h2 id="t-fitness">6-Day Split Tracker</h2><button class="close" aria-label="Close">×</button></div>
+  <div class="dlg-head"><h2 id="t-fitness">6-Day Split Tracker: training and nutrition app</h2><button class="close" aria-label="Close">×</button></div>
   <div class="dlg-body">
-    <h3>Overview</h3>
-    <p>I built this app to plan and follow my own strength training. It runs a six-day double muscle group split, organised as a four-week block where the fourth week is a deload. A Today view opens straight to the current session.</p>
-    <h3>Features</h3>
+    <h3>The problem</h3>
+    <p>Commercial trackers impose their own programs and put the useful parts behind a paywall. I wanted to define the split myself, have weight targets progress on performance rather than the calendar, and keep my own data. So I built an installable web app that works offline, syncs across phone and laptop, and replaced the spreadsheet I'd been keeping lifts in.</p>
+    <h3>What it does</h3>
     <ul>
-      <li>Week-by-week plan across Weeks 1–3, plus a deload Week 4</li>
-      <li>Today view for the current day's workout</li>
-      <li>User accounts that sync training data across devices</li>
-      <li>Installs to the phone home screen as a progressive web app</li>
-      <li>Athlete profile with body weight, height and training level</li>
+      <li><strong>Custom programs:</strong> build each month's plan by naming days, adding exercises and setting reps per set. Each month stands alone, so a new training block is a new plan and past months stay on record.</li>
+      <li><strong>Earned progression:</strong> log weight per set. The top-set target rises only once you hit it, and the app works back from it to suggest a weight for every earlier set.</li>
+      <li><strong>Skipped sessions:</strong> time off is marked as skipped, so it isn't misread as a plateau.</li>
+      <li><strong>Bottleneck analysis:</strong> stalled lifts month over month, strength-balance ratios between lifts, and bodyweight trend as a percentage of bodyweight.</li>
+      <li><strong>Diet tracking:</strong> calorie and macro targets set from weekly body-composition readings, with meals logged by typing, speaking or photographing them.</li>
+      <li><strong>Photo-to-macros:</strong> handles nutrition labels, food on a kitchen scale, whole foods and mixed plates, broken into per-item grams you can correct.</li>
+      <li><strong>Integrations:</strong> a daily Telegram brief, a monthly Excel export with charts, and import of workout files from a Suunto watch.</li>
     </ul>
+    <h3>Stack</h3>
+    <p>Plain HTML, CSS and JavaScript with no framework or build step, hosted on Netlify. Supabase provides Postgres, authentication, file storage and Edge Functions (Deno/TypeScript). Anthropic's API powers the vision and review features, and a service worker provides offline support.</p>
+    <h3>Engineering decisions</h3>
+    <ul>
+      <li><strong>Security in the database:</strong> all 13 Postgres tables have row-level security, with every policy scoped to the signed-in user, so data separation is enforced by the database rather than application code.</li>
+      <li><strong>No keys in the browser:</strong> every model call goes through an Edge Function that authenticates the user first.</li>
+      <li><strong>Progression maths:</strong> the Epley formula estimates a one-rep max from the top set, then the app solves back for each set's rep count to suggest its weight.</li>
+      <li><strong>Calorie targets:</strong> Katch-McArdle when body-fat percentage is known, since it accounts for lean mass, with Mifflin-St Jeor as the fallback.</li>
+      <li><strong>Hand-written FIT parser:</strong> I wrote the Suunto binary file parser myself instead of using a library, so I could unit-test it against generated files rather than trust an unverifiable dependency.</li>
+      <li><strong>In-app camera:</strong> Android was evicting the app from memory while the system camera was open, losing the photo and the user's place. I replaced the file input with an in-page getUserMedia viewfinder.</li>
+    </ul>
+    <h3>Next</h3>
+    <p>Per-user rate limiting and onboarding before opening it to other people, and a packaged Android build if it's worth leaving the browser.</p>
     <p style="margin-top:24px"><a class="btn primary" href="https://ckhyrox.netlify.app" target="_blank" rel="noopener">Open the app</a></p>
   </div>
 </dialog>
