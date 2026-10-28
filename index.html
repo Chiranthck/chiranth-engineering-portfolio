@@ -1,961 +1,412 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiranth K - Engineering Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #667eea;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.2s forwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.4s forwards;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #f0f0f0;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-image {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            text-align: center;
-            background-color: #667eea;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-image::before {
-            opacity: 1;
-        }
-
-        .project-image-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            text-align: center;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-        }
-
-        .project-card:hover .project-image-text {
-            opacity: 1;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-            line-height: 1.3;
-        }
-
-        .project-description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            font-size: 0.9rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tag {
-            background: #f0f4ff;
-            color: #667eea;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .project-button {
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s ease;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .project-button:hover {
-            background: #5a6fd8;
-        }
-
-        .gallery-button {
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery-button:hover {
-            background: #218838;
-        }
-
-        /* Image Gallery Styles */
-        .image-gallery {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #f8f9ff;
-            border-radius: 8px;
-        }
-
-        .gallery-title {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.5rem;
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 80px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            border: 2px solid #e0e6ff;
-        }
-
-        .gallery-image:hover {
-            transform: scale(1.05);
-            border-color: #667eea;
-        }
-
-        .no-images {
-            text-align: center;
-            color: #999;
-            font-style: italic;
-            padding: 1rem;
-            font-size: 0.8rem;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: #f8f9ff;
-        }
-
-        .about-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .skills {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .skill {
-            background: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            font-weight: 500;
-            color: #333;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 3% auto;
-            padding: 2rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 1000px;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            top: 15px;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        .modal h2 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            padding-right: 40px;
-        }
-
-        .modal-section {
-            margin-bottom: 2rem;
-        }
-
-        .modal-section h3 {
-            color: #333;
-            margin-bottom: 0.5rem;
-            border-bottom: 2px solid #f0f4ff;
-            padding-bottom: 0.5rem;
-        }
-
-        .modal-section ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal-section li {
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .modal-gallery img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .modal-gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Image Viewer Modal */
-        .image-viewer {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-        }
-
-        .image-viewer-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .image-viewer img {
-            width: 100%;
-            height: auto;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .image-viewer .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            }
-
-            .gallery-image {
-                height: 60px;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chiranth K — Engineering Portfolio</title>
+<meta name="description" content="Industrial engineer, farmer and automation builder. Patent-pending IoT fire protection device, design-of-experiments research on the farm, and more.">
+<meta property="og:title" content="Chiranth K — Engineering Portfolio">
+<meta property="og:description" content="Industrial engineer and farmer building machines for Indian farms.">
+<meta property="og:image" content="https://chiranthck.github.io/chiranth-engineering-portfolio/images/phoenix/prototype.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1F3EE; --paper-2:#E4E9E2; --ink:#18241D; --muted:#56665B;
+  --leaf:#2E6B4A; --leaf-ink:#ffffff; --turmeric:#D8A31A; --rule:#C7D0C7;
+  --display:"Archivo",system-ui,sans-serif; --body:"Source Serif 4",Georgia,serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.125rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--leaf);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--turmeric);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;letter-spacing:-.01em}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav .mark{font:800 1.05rem var(--display);font-stretch:110%;color:var(--ink);text-decoration:none}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{font:500 .95rem var(--display);color:var(--ink);text-decoration:none}
+.nav ul a:hover{color:var(--leaf)}
+
+/* hero */
+.hero{padding:72px 0 64px;border-bottom:1px solid var(--rule)}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:end}
+.hero h1{font-size:clamp(3.6rem,10vw,8.5rem);font-weight:900;font-stretch:68%;line-height:.86;letter-spacing:-.02em;text-transform:none}
+.hero .lede{font-size:clamp(1.25rem,2.2vw,1.6rem);line-height:1.4;max-width:30ch;margin:28px 0 0}
+.hero .sub{color:var(--muted);max-width:52ch;margin:16px 0 0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-block;font:600 1rem var(--display);padding:13px 22px;border-radius:4px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{background:var(--leaf);border-color:var(--leaf);color:var(--leaf-ink)}
+.hero figure{margin:0}
+.hero figure img{width:100%;aspect-ratio:4/5;max-height:620px;object-fit:cover;object-position:center 60%;border-radius:6px}
+.hero figcaption{font:500 .85rem/1.4 var(--display);color:var(--muted);margin-top:10px}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin:0 auto;border-bottom:1px solid var(--rule)}
+.facts div{padding:28px 24px 28px 0;border-right:1px solid var(--rule)}
+.facts div+div{padding-left:24px}.facts div:last-child{border-right:0}
+.facts dt{font:800 1.6rem/1.1 var(--display);font-stretch:80%}
+.facts dd{margin:6px 0 0;color:var(--muted);font-size:.98rem;line-height:1.45}
+.facts .gold dt{color:#8a6500}
+
+/* sections */
+section{padding:96px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px}
+.section-head h2{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:850;font-stretch:75%}
+.section-head p{color:var(--muted);max-width:44ch;margin:0}
+
+/* projects */
+.project{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;padding:56px 0;border-top:1px solid var(--rule);align-items:center}
+.project:first-of-type{border-top:0;padding-top:0}
+.project .media{position:relative;cursor:zoom-in;border:0;padding:0;background:none;display:block;width:100%}
+.project .media img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;background:var(--paper-2)}
+.project .badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.badge{font:600 .82rem var(--display);padding:5px 10px;border-radius:3px;background:var(--paper-2);color:var(--ink)}
+.badge.gold{background:var(--turmeric);color:var(--ink)}
+.project h3{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;font-stretch:85%;margin-bottom:14px}
+.project p{margin:0 0 20px;max-width:56ch}
+.result{display:flex;gap:28px;flex-wrap:wrap;margin:0 0 24px;padding:16px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.result div{min-width:110px}
+.result dt{font:800 1.5rem var(--display);font-stretch:80%;color:var(--leaf)}
+.result dd{margin:2px 0 0;font-size:.9rem;color:var(--muted);line-height:1.35}
+.tags{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 24px;padding:0;list-style:none;font:500 .9rem var(--display);color:var(--muted)}
+.placeholder-media{aspect-ratio:4/3;border-radius:6px;background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:28px;align-content:end}
+.placeholder-media span{font:800 clamp(1rem,2vw,1.4rem) var(--display);font-stretch:70%;border-top:3px solid var(--turmeric);padding-top:8px}
+.placeholder-media span:nth-child(n+4){border-color:#6f8f7c}
+
+/* about */
+.about{background:var(--ink);color:var(--paper)}
+.about a{color:#9fd3b4}
+.about .section-head p{color:#b9c6bd}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px}
+.about-grid p{margin:0 0 20px;max-width:60ch}
+.cv{margin:0;padding:0;list-style:none}
+.cv li{padding:18px 0;border-top:1px solid #3a4a40}
+.cv li:last-child{border-bottom:1px solid #3a4a40}
+.cv strong{display:block;font:700 1.1rem var(--display)}
+.cv span{color:#b9c6bd;font-size:1rem}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:72px;padding-top:40px;border-top:1px solid #3a4a40}
+.skills h3{font-size:1rem;font-weight:700;color:var(--turmeric);margin-bottom:10px}
+.skills ul{margin:0;padding:0;list-style:none;font-size:1rem;line-height:1.8;color:#dfe6e0}
+
+/* contact */
+.contact{padding:96px 0 64px}
+.contact h2{font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;font-stretch:70%;max-width:16ch}
+.contact .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+footer{border-top:1px solid var(--rule);padding:24px 0;color:var(--muted);font:500 .9rem var(--display)}
+
+/* dialogs */
+dialog{border:0;padding:0;max-width:min(960px,94vw);width:100%;max-height:90vh;border-radius:8px;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(16,24,19,.72)}
+dialog[open]{animation:pop .22s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.dlg-head{position:sticky;top:0;background:var(--paper);display:flex;justify-content:space-between;align-items:start;gap:16px;padding:28px 32px 16px;border-bottom:1px solid var(--rule);z-index:1}
+.dlg-head h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;font-stretch:85%}
+.close{border:0;background:var(--paper-2);width:40px;height:40px;border-radius:50%;font-size:1.4rem;line-height:1;cursor:pointer;flex:none;color:var(--ink)}
+.dlg-body{padding:24px 32px 36px}
+.dlg-body h3{font-size:1.15rem;font-weight:700;margin:28px 0 8px}
+.dlg-body ul{padding-left:1.2em;margin:0}
+.dlg-body li{margin-bottom:6px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.gallery button{border:0;padding:0;background:none;cursor:zoom-in}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+.gallery figcaption{font:500 .82rem var(--display);color:var(--muted);margin-top:6px;text-align:left}
+.gallery figure{margin:0}
+#lightbox{max-width:96vw;width:auto;background:transparent}
+#lightbox img{max-height:86vh;width:auto;border-radius:6px;margin:0 auto}
+#lightbox p{color:#fff;font:500 .95rem var(--display);text-align:center;margin:10px 0 0}
+#lightbox .close{position:absolute;top:10px;right:10px}
+
+/* responsive */
+@media (max-width:900px){
+  .hero .wrap,.project,.about-grid{grid-template-columns:1fr;gap:32px}
+  .hero{padding-top:40px}
+  .hero figure{max-width:420px}
+  .facts{grid-template-columns:1fr 1fr}
+  .facts div:nth-child(2){border-right:0}
+  .facts div:nth-child(odd){padding-left:0}
+  .facts div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .skills{grid-template-columns:1fr 1fr}
+  .section-head{flex-direction:column;align-items:start}
+  section{padding:72px 0}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .nav ul{gap:16px}
+  .facts{grid-template-columns:1fr}
+  .facts div,.facts div+div{border-right:0;border-bottom:1px solid var(--rule);padding-left:0}
+  .facts div:last-child{border-bottom:0}
+  .skills{grid-template-columns:1fr}
+  .placeholder-media{grid-template-columns:repeat(3,1fr);gap:14px 8px}
+  .dlg-head,.dlg-body{padding-left:20px;padding-right:20px}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Chiranth K - Portfolio</div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><button id="fullscreen-btn" onclick="toggleFullscreen()" style="background: none; border: 1px solid #667eea; color: #667eea; padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">⛶ Fullscreen</button></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>Engineering Innovation Portfolio</h1>
-                <p>Showcasing systematic problem-solving through Design of Experiments, IoT Development, and Engineering Analysis</p>
-                <a href="javascript:void(0)" class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View My Projects</a>
-            </div>
-        </section>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="#top">Chiranth K</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                
-                <div class="projects-grid">
-                    <!-- Maruti 800 Project -->
-                    <div class="project-card">
-                        <div class="project-image" id="maruti-main-image">
-                            <div class="project-image-text">View Project Details</div>
-                            <span>🚗 Maruti 800 Electrical System</span>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Mock Layout of Car Electrical System - Maruti 800</h3>
-                            <p class="project-description">
-                                Comprehensive physical layout demonstrating automotive electrical system interconnections 
-                                including battery, alternator, starter motor, lighting systems, and control modules with 
-                                proper wiring standards and component integration.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Automobile Engineering</span>
-                                <span class="tag">Electrical Systems</span>
-                                <span class="tag">Wiring Standards</span>
-                                <span class="tag">System Integration</span>
-                            </div>
-                            <a href="javascript:void(0)" class="project-button" onclick="openModal('maruti')">View Details</a>
-                            <a href="javascript:void(0)" class="gallery-button" onclick="toggleGallery('maruti')">📸 Gallery</a>
-                            
-                            <!-- Project Gallery -->
-                            <div class="image-gallery" id="maruti-gallery" style="display: none;">
-                                <div class="gallery-title">📸 Project Images</div>
-                                <div class="gallery-grid" id="maruti-gallery-grid">
-                                    <!-- Images will be loaded here -->
-                                </div>
-                                <div class="no-images" id="maruti-no-images">
-                                    Upload your images to: <br>
-                                    <code>images/maruti-800/</code><br>
-                                    Then update the image paths in the code
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Chiranth K</h1>
+      <p class="lede">Industrial engineer and farmer, building machines for Indian farms.</p>
+      <p class="sub">I design, prototype and test hardware — from a patent-pending fire protection device to field experiments on my own farm — and I'm working toward agricultural robotics.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">See the projects</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <figure>
+      <img src="images/phoenix/prototype.jpg" alt="The Phoenix fire protection prototype on display with the project team" width="1200" height="1600" fetchpriority="high">
+      <figcaption>Phoenix, the IoT fire protection prototype, at exhibition.</figcaption>
+    </figure>
+  </div>
+</header>
 
-                    <!-- Radish Optimization Project -->
-                    <div class="project-card">
-                        <div class="project-image" id="radish-main-image">
-                            <div class="project-image-text">View Project Details</div>
-                            <span>🌱 Radish Yield Optimization</span>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Taguchi-Grey Relational Analysis for Radish Yield Optimization</h3>
-                            <p class="project-description">
-                                Applied Design of Experiments methodology using Taguchi's Orthogonal Arrays and 
-                                Grey Relational Analysis to optimize radish cultivation, identifying optimal 
-                                combination of seed variety, irrigation method, and manure type.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Design of Experiments</span>
-                                <span class="tag">Statistical Analysis</span>
-                                <span class="tag">Agricultural Engineering</span>
-                                <span class="tag">Data Optimization</span>
-                            </div>
-                            <a href="javascript:void(0)" class="project-button" onclick="openModal('radish')">View Details</a>
-                            <a href="javascript:void(0)" class="gallery-button" onclick="toggleGallery('radish')">📸 Gallery</a>
-                            
-                            <!-- Project Gallery -->
-                            <div class="image-gallery" id="radish-gallery" style="display: none;">
-                                <div class="gallery-title">📸 Project Images</div>
-                                <div class="gallery-grid" id="radish-gallery-grid">
-                                    <!-- Images will be loaded here -->
-                                </div>
-                                <div class="no-images" id="radish-no-images">
-                                    Upload your images to: <br>
-                                    <code>images/radish-optimization/</code><br>
-                                    Then update the image paths in the code
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<dl class="facts wrap" aria-label="Highlights">
+  <div class="gold"><dt>Patent pending</dt><dd>Indian application 202541095803, published Nov 2025</dd></div>
+  <div><dt>Best Final Year Project</dt><dd>MSRIT, Bengaluru</dd></div>
+  <div><dt>Farming since 2017</dt><dd>Coconut, mango and chiku on the family farm</dd></div>
+  <div><dt>Batch topper</dt><dd>Diploma in Automobile Engineering, K.S. Polytechnic</dd></div>
+</dl>
 
-                    <!-- Fire Protection Device -->
-                    <div class="project-card">
-                        <div class="project-image" id="fire-main-image">
-                            <div class="project-image-text">View Project Details</div>
-                            <span>🔥 IoT Fire Protection System</span>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Functional Prototype of Modular IoT-Enabled Fire Protection Device</h3>
-                            <p class="project-description">
-                                Developed autonomous fire protection system integrating real-time detection, 
-                                directional water suppression, and remote alerting in a self-contained unit 
-                                for infrastructure-limited environments.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">IoT Development</span>
-                                <span class="tag">Automation</span>
-                                <span class="tag">Fire Safety</span>
-                                <span class="tag">Raspberry Pi</span>
-                                <span class="tag">Sensor Integration</span>
-                            </div>
-                            <a href="javascript:void(0)" class="project-button" onclick="openModal('fire')">View Details</a>
-                            <a href="javascript:void(0)" class="gallery-button" onclick="toggleGallery('fire')">📸 Gallery</a>
-                            
-                            <!-- Project Gallery -->
-                            <div class="image-gallery" id="fire-gallery" style="display: none;">
-                                <div class="gallery-title">📸 Project Images</div>
-                                <div class="gallery-grid" id="fire-gallery-grid">
-                                    <!-- Images will be loaded here -->
-                                </div>
-                                <div class="no-images" id="fire-no-images">
-                                    Upload your images to: <br>
-                                    <code>images/fire-protection/</code><br>
-                                    Then update the image paths in the code
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <p class="about-text">
-                        I am an engineering student passionate about applying systematic methodologies 
-                        to solve real-world problems. My projects demonstrate proficiency in experimental 
-                        design, statistical analysis, IoT development, and practical implementation across 
-                        diverse engineering domains.
-                    </p>
-                    <p class="about-text">
-                        Through hands-on research, data-driven approaches, and innovative technology solutions,
-                        I aim to contribute to sustainable engineering solutions that make a meaningful impact 
-                        on society and public safety.
-                    </p>
-                    <div class="skills">
-                        <span class="skill">Design of Experiments</span>
-                        <span class="skill">IoT Development</span>
-                        <span class="skill">Statistical Analysis</span>
-                        <span class="skill">Electrical Systems</span>
-                        <span class="skill">Automation</span>
-                        <span class="skill">Data Optimization</span>
-                        <span class="skill">Research Methodology</span>
-                        <span class="skill">Technical Documentation</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Project Modals -->
-    <div id="marutiModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('maruti')">&times;</span>
-            <h2>Mock Layout of Car Electrical System - Maruti 800</h2>
-            
-            <div class="modal-section">
-                <h3>Project Images</h3>
-                <div class="modal-gallery" id="maruti-modal-gallery">
-                    <!-- Images will be loaded here -->
-                </div>
-            </div>
-            
-            <div class="modal-section">
-                <h3>Project Overview</h3>
-                <p>Designed and constructed a comprehensive mock layout of the Maruti 800 car electrical system, 
-                demonstrating the interconnection of key automotive components including battery, alternator, 
-                starter motor, lighting systems, and control modules.</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>Key Components Implemented</h3>
-                <ul>
-                    <li><strong>Power Generation & Storage:</strong> Battery, Generator Assembly, Alternator</li>
-                    <li><strong>Engine Systems:</strong> Starter Motor Assembly, Distributor, Spark Plug</li>
-                    <li><strong>Lighting Systems:</strong> Headlights, Tail Lamps, Indicators, Interior Lighting</li>
-                    <li><strong>Control Systems:</strong> Combination Switch, Steering Lock, Relays</li>
-                    <li><strong>Monitoring:</strong> Fuel Gauge Assembly, Multi-meter</li>
-                    <li><strong>Safety Systems:</strong> Horn, Wiper Motor</li>
-                </ul>
-            </div>
-        </div>
+<main>
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <p>Hardware prototypes, field experiments and software. Select a project for the full write-up and photos.</p>
     </div>
 
-    <div id="radishModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('radish')">&times;</span>
-            <h2>Taguchi-Grey Relational Analysis for Radish Yield Optimization</h2>
-            
-            <div class="modal-section">
-                <h3>Project Images</h3>
-                <div class="modal-gallery" id="radish-modal-gallery">
-                    <!-- Images will be loaded here -->
-                </div>
-            </div>
-            
-            <div class="modal-section">
-                <h3>Project Overview</h3>
-                <p>Applied Design of Experiments (DOE) methodology using Taguchi's Orthogonal Arrays and Grey 
-                Relational Analysis to systematically optimize radish cultivation.</p>
-            </div>
+    <!-- Phoenix -->
+    <article class="project">
+      <button class="media" data-open="dlg-phoenix" aria-label="Open Phoenix project details">
+        <img src="images/phoenix/circuit.jpg" alt="Circuit diagram of the Phoenix device: flame sensors, controller, relay, pump and servos" loading="lazy" width="2000" height="1271">
+      </button>
+      <div>
+        <div class="badges"><span class="badge gold">Patent pending</span><span class="badge">Best Final Year Project, MSRIT</span></div>
+        <h3>Phoenix: modular IoT fire protection device</h3>
+        <p>A self-contained unit that detects a fire, aims a water jet at it and alerts people remotely — built for sites without sprinkler infrastructure. Developed with industry partner Vision Safety India.</p>
+        <dl class="result">
+          <div><dt>20–25 m</dt><dd>water delivery range</dd></div>
+          <div><dt>80 cm</dt><dd>fire detection radius</dd></div>
+          <div><dt>Remote</dt><dd>IoT alerting</dd></div>
+        </dl>
+        <ul class="tags"><li>IoT</li><li>Raspberry Pi</li><li>Sensor integration</li><li>Servo actuation</li><li>Fire safety</li></ul>
+        <button class="btn" data-open="dlg-phoenix">Read the details</button>
+      </div>
+    </article>
 
-            <div class="modal-section">
-                <h3>Key Results & Achievements</h3>
-                <ul>
-                    <li>Optimal Combination: Trusted Seeds + Drip Irrigation + DAP Manure</li>
-                    <li>Average Length: 14.75 cm</li>
-                    <li>Quantity: 35.5 units</li>
-                    <li>Weight: 2.25 kg</li>
-                    <li>Grey Relational Grade: 0.8397 (highest among all treatments)</li>
-                </ul>
-            </div>
+    <!-- Fitness app -->
+    <article class="project">
+      <button class="media" data-open="dlg-fitness" aria-label="Open fitness tracker project details">
+        <div class="placeholder-media" aria-hidden="true">
+          <span>Day 1</span><span>Day 2</span><span>Day 3</span><span>Day 4</span><span>Day 5</span><span>Day 6</span>
         </div>
+      </button>
+      <div>
+        <div class="badges"><span class="badge">Software</span></div>
+        <h3>Six-day split fitness tracker</h3>
+        <p>An app for planning and logging a six-day training split: each day's workout, with sets, reps and load recorded so progress can be tracked week over week.</p>
+        <ul class="tags"><li>App development</li><li>Product design</li><li>Data tracking</li></ul>
+        <button class="btn" data-open="dlg-fitness">Read the details</button>
+      </div>
+    </article>
+
+    <!-- Radish -->
+    <article class="project">
+      <button class="media" data-open="dlg-radish" aria-label="Open radish yield project details">
+        <img src="images/radish/field.jpg" alt="Radish experiment plots with drip irrigation lines in a coconut grove" loading="lazy" width="1400" height="1050">
+      </button>
+      <div>
+        <div class="badges"><span class="badge">Field research</span></div>
+        <h3>Optimizing radish yield with Taguchi and Grey Relational Analysis</h3>
+        <p>A designed experiment on my farm testing seed variety, irrigation method and manure type with a Taguchi orthogonal array, then ranking treatments across length, count and weight together using Grey Relational Analysis.</p>
+        <dl class="result">
+          <div><dt>0.8397</dt><dd>highest grey relational grade</dd></div>
+          <div><dt>2.25 kg</dt><dd>yield weight, best treatment</dd></div>
+          <div><dt>14.75 cm</dt><dd>average root length</dd></div>
+        </dl>
+        <ul class="tags"><li>Design of experiments</li><li>Taguchi method</li><li>Grey relational analysis</li><li>Agriculture</li></ul>
+        <button class="btn" data-open="dlg-radish">Read the details</button>
+      </div>
+    </article>
+
+    <!-- Maruti -->
+    <article class="project">
+      <button class="media" data-open="dlg-maruti" aria-label="Open Maruti 800 project details">
+        <img src="images/maruti-800/layout.jpg" alt="Mock layout board of the Maruti 800 electrical system with lamps, switches, battery and starter motor" loading="lazy" width="1200" height="1600">
+      </button>
+      <div>
+        <div class="badges"><span class="badge">Automotive</span></div>
+        <h3>Maruti 800 electrical system mock layout</h3>
+        <p>A working teaching board that lays out the car's complete electrical system — charging, starting, ignition, lighting and signalling — wired to standard so each circuit can be traced and tested.</p>
+        <ul class="tags"><li>Automotive electrical</li><li>Wiring standards</li><li>System integration</li></ul>
+        <button class="btn" data-open="dlg-maruti">Read the details</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>About</h2>
+      <p>Farm operations, plant maintenance and engineering study, side by side.</p>
     </div>
-
-    <div id="fireModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('fire')">&times;</span>
-            <h2>Functional Prototype of Modular IoT-Enabled Fire Protection Device</h2>
-            
-            <div class="modal-section">
-                <h3>Project Images</h3>
-                <div class="modal-gallery" id="fire-modal-gallery">
-                    <!-- Images will be loaded here -->
-                </div>
-            </div>
-            
-            <div class="modal-section">
-                <h3>Project Overview</h3>
-                <p>Developed a functional prototype of a modular, IoT-enabled fire protection device that integrates 
-                real-time fire detection, directional water-based suppression, and remote alerting.</p>
-            </div>
-
-            <div class="modal-section">
-                <h3>Technical Achievements</h3>
-                <ul>
-                    <li>Real-time fire detection within 80cm radius</li>
-                    <li>Automated targeting and platform positioning</li>
-                    <li>Effective water delivery at 20-25 meter range</li>
-                    <li>IoT connectivity and remote alerting functionality</li>
-                    <li>Industry collaboration with Vision Safety India</li>
-                </ul>
-            </div>
-        </div>
+    <div class="about-grid">
+      <div>
+        <p>I've run my family's coconut, mango and chiku farm since 2017. Working the land every day is where most of my engineering problems come from: irrigation over long distances, labour-heavy routine tasks, and decisions made on guesswork instead of data.</p>
+        <p>I trained first as an automobile technician, then worked as an Operations &amp; Maintenance Engineer for ITC's cloud kitchens, and completed a BE in Industrial Engineering and Management at MSRIT, Bengaluru. My final-year project, Phoenix, won Best Final Year Project and is now patent pending.</p>
+        <p>My goal is to build agricultural robots for small Indian farms. I'm currently studying ROS 2, control and perception on a Raspberry Pi 5 to get there.</p>
+      </div>
+      <ul class="cv">
+        <li><strong>BE, Industrial Engineering and Management</strong><span>M.S. Ramaiah Institute of Technology, Bengaluru</span></li>
+        <li><strong>Operations &amp; Maintenance Engineer</strong><span>ITC Cloud Kitchens — three facilities (MCC, SBC, Sansho)</span></li>
+        <li><strong>Diploma, Automobile Engineering</strong><span>K.S. Polytechnic — Distinction, batch topper</span></li>
+        <li><strong>Farm owner and operator</strong><span>Since 2017 — coconut, mango, chiku</span></li>
+      </ul>
     </div>
-
-    <!-- Image Viewer Modal -->
-    <div id="imageViewer" class="image-viewer">
-        <span class="close" onclick="closeImageViewer()">&times;</span>
-        <div class="image-viewer-content">
-            <img id="viewerImage" src="" alt="Project Image">
-        </div>
+    <div class="skills">
+      <div><h3>Methods</h3><ul><li>Design of experiments</li><li>Taguchi method</li><li>Grey relational analysis</li><li>Statistical analysis</li></ul></div>
+      <div><h3>Hardware</h3><ul><li>Raspberry Pi and microcontrollers</li><li>Sensors and actuators</li><li>Automotive electrical systems</li><li>Pumps and irrigation</li></ul></div>
+      <div><h3>Software</h3><ul><li>Python</li><li>ROS 2</li><li>IoT alerting</li><li>App development</li></ul></div>
+      <div><h3>Operations</h3><ul><li>Plant maintenance</li><li>Farm management</li><li>Technical documentation</li><li>Patent prosecution</li></ul></div>
     </div>
+  </div>
+</section>
 
-    <script>
-        // Project images configuration
-        const projectImages = {
-            maruti: [
-                // Add your image paths here after uploading
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/maruthi-800/final%20prototype.jpg',
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/maruthi-800/team%20pic.jpg',
-                // 'images/maruti-800/wiring-diagram.jpg',
-                // 'images/maruti-800/final-layout.jpg'
-            ],
-            radish: [
-                // Add your image paths here after uploading
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/radish-optimization/FINAL%20RESULTS.jpeg',
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/radish-optimization/IMG_4616.JPG',
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/radish-optimization/PLOT.JPG',
-                // 'images/radish-optimization/final-results.jpg'
-            ],
-            fire: [
-                // Add your image paths here after uploading
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/images/fire-protection/final%20prototype.jpg',
-                   'https://raw.githubusercontent.com/Chiranthck/chiranth-engineering-portfolio/main/images/images/fire-protection/circuit_image%20(3).png',
-                // 'images/fire-protection/control-system.jpg',
-                // 'images/fire-protection/testing-phase.jpg'
-            ]
-        };
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's talk about engineering for farms.</h2>
+    <p>Open to research collaborations, graduate study and work in robotics and automation.</p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/chiranthck">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
 
-        // Load project gallery
-        function loadGallery(project) {
-            const images = projectImages[project];
-            const galleryGrid = document.getElementById(`${project}-gallery-grid`);
-            const noImagesDiv = document.getElementById(`${project}-no-images`);
-            const modalGallery = document.getElementById(`${project}-modal-gallery`);
+<footer><div class="wrap">© 2026 Chiranth K</div></footer>
 
-            if (images && images.length > 0) {
-                // Hide no-images message
-                noImagesDiv.style.display = 'none';
-                
-                // Clear existing content
-                galleryGrid.innerHTML = '';
-                if (modalGallery) modalGallery.innerHTML = '';
+<!-- Dialogs -->
+<dialog id="dlg-phoenix" aria-labelledby="t-phoenix">
+  <div class="dlg-head"><h2 id="t-phoenix">Phoenix: modular IoT fire protection device</h2><button class="close" aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <div class="gallery">
+      <figure><button data-full="images/phoenix/prototype.jpg"><img src="images/phoenix/prototype.jpg" alt="Phoenix prototype with the team" loading="lazy"></button><figcaption>Final prototype at exhibition</figcaption></figure>
+      <figure><button data-full="images/phoenix/circuit.jpg"><img src="images/phoenix/circuit.jpg" alt="Phoenix circuit diagram" loading="lazy"></button><figcaption>Circuit design</figcaption></figure>
+    </div>
+    <h3>Overview</h3>
+    <p>Phoenix is a functional prototype of a modular fire protection device that combines real-time fire detection, directional water suppression and remote alerting in one self-contained unit. It is meant for places where installing a full sprinkler network isn't practical.</p>
+    <h3>What it does</h3>
+    <ul>
+      <li>Detects fire in real time within an 80 cm radius</li>
+      <li>Positions its platform and aims the nozzle at the fire automatically</li>
+      <li>Delivers water effectively at 20–25 m</li>
+      <li>Sends remote alerts over IoT</li>
+    </ul>
+    <h3>Recognition</h3>
+    <ul>
+      <li>Best Final Year Project, MSRIT</li>
+      <li>Indian patent application 202541095803, published November 2025</li>
+      <li>Developed in collaboration with Vision Safety India</li>
+    </ul>
+  </div>
+</dialog>
 
-                // Add images to gallery
-                images.forEach((imagePath, index) => {
-                    // Card gallery thumbnail
-                    const galleryImage = document.createElement('div');
-                    galleryImage.className = 'gallery-image';
-                    galleryImage.style.backgroundImage = `url(${imagePath})`;
-                    galleryImage.onclick = () => openImageViewer(imagePath);
-                    galleryGrid.appendChild(galleryImage);
+<dialog id="dlg-fitness" aria-labelledby="t-fitness">
+  <div class="dlg-head"><h2 id="t-fitness">Six-day split fitness tracker</h2><button class="close" aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <h3>Overview</h3>
+    <p>An app for following a six-day training split. Each day has its own planned workout, and every session is logged with sets, reps and load so progress is visible week over week.</p>
+    <h3>Features</h3>
+    <ul>
+      <li>Six-day training plan with a workout for each day</li>
+      <li>Session logging for sets, reps and weight</li>
+      <li>Weekly progress tracking</li>
+    </ul>
+  </div>
+</dialog>
 
-                    // Modal gallery image
-                    if (modalGallery) {
-                        const modalImage = document.createElement('img');
-                        modalImage.src = imagePath;
-                        modalImage.alt = `${project} project image ${index + 1}`;
-                        modalImage.onclick = () => openImageViewer(imagePath);
-                        modalGallery.appendChild(modalImage);
-                    }
-                });
-            } else {
-                // Show no-images message
-                noImagesDiv.style.display = 'block';
-            }
-        }
+<dialog id="dlg-radish" aria-labelledby="t-radish">
+  <div class="dlg-head"><h2 id="t-radish">Optimizing radish yield with Taguchi and Grey Relational Analysis</h2><button class="close" aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <div class="gallery">
+      <figure><button data-full="images/radish/field.jpg"><img src="images/radish/field.jpg" alt="Experiment plots" loading="lazy"></button><figcaption>Experiment plots</figcaption></figure>
+      <figure><button data-full="images/radish/drip-layout.jpg"><img src="images/radish/drip-layout.jpg" alt="Drip irrigation layout" loading="lazy"></button><figcaption>Drip irrigation layout</figcaption></figure>
+      <figure><button data-full="images/radish/treatments.jpg"><img src="images/radish/treatments.jpg" alt="Harvested radish from treatments 1 to 9" loading="lazy"></button><figcaption>Harvest from each treatment</figcaption></figure>
+    </div>
+    <h3>Overview</h3>
+    <p>I used a design of experiments approach to find the best way to grow radish on my farm. A Taguchi orthogonal array set out the treatment combinations across three factors — seed variety, irrigation method and manure type — so the effects could be measured with far fewer plots than testing every combination. Grey Relational Analysis then combined three yield measures (root length, count and weight) into a single grade to rank the treatments.</p>
+    <h3>Results</h3>
+    <ul>
+      <li>Best combination: Trusted Seeds, drip irrigation and DAP manure</li>
+      <li>Average root length 14.75 cm, quantity 35.5, weight 2.25 kg</li>
+      <li>Grey relational grade 0.8397, the highest of all treatments</li>
+    </ul>
+  </div>
+</dialog>
 
-        // Toggle gallery visibility
-        function toggleGallery(project) {
-            const gallery = document.getElementById(`${project}-gallery`);
-            if (gallery.style.display === 'none') {
-                gallery.style.display = 'block';
-                loadGallery(project);
-            } else {
-                gallery.style.display = 'none';
-            }
-        }
+<dialog id="dlg-maruti" aria-labelledby="t-maruti">
+  <div class="dlg-head"><h2 id="t-maruti">Maruti 800 electrical system mock layout</h2><button class="close" aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <div class="gallery">
+      <figure><button data-full="images/maruti-800/layout.jpg"><img src="images/maruti-800/layout.jpg" alt="Completed layout board" loading="lazy"></button><figcaption>Completed layout board</figcaption></figure>
+      <figure><button data-full="images/maruti-800/team.jpg"><img src="images/maruti-800/team.jpg" alt="Project team with the board" loading="lazy"></button><figcaption>Project team</figcaption></figure>
+    </div>
+    <h3>Overview</h3>
+    <p>We designed and built a full-scale mock layout of the Maruti 800's electrical system, showing how the battery, charging system, starter, ignition, lighting and control circuits connect and interact.</p>
+    <h3>Components</h3>
+    <ul>
+      <li><strong>Power:</strong> battery, generator assembly, alternator</li>
+      <li><strong>Engine:</strong> starter motor, distributor, spark plug</li>
+      <li><strong>Lighting:</strong> headlights, tail lamps, indicators, interior light</li>
+      <li><strong>Controls:</strong> combination switch, steering lock, relays</li>
+      <li><strong>Monitoring:</strong> fuel gauge, multimeter</li>
+      <li><strong>Safety:</strong> horn, wiper motor</li>
+    </ul>
+  </div>
+</dialog>
 
-        // Open image viewer
-        function openImageViewer(imageSrc) {
-            const viewer = document.getElementById('imageViewer');
-            const viewerImage = document.getElementById('viewerImage');
-            viewerImage.src = imageSrc;
-            viewer.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+<dialog id="lightbox" aria-label="Image viewer">
+  <button class="close" aria-label="Close">×</button>
+  <img src="" alt="">
+  <p></p>
+</dialog>
 
-        // Close image viewer
-        function closeImageViewer() {
-            const viewer = document.getElementById('imageViewer');
-            viewer.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Modal functionality
-        function openModal(projectId) {
-            const modal = document.getElementById(projectId + 'Modal');
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                // Load modal gallery
-                loadGallery(projectId);
-            }
-        }
-
-        function closeModal(projectId) {
-            const modal = document.getElementById(projectId + 'Modal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Close modals when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal') || event.target.classList.contains('image-viewer')) {
-                event.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                
-                if (href && href.length > 1 && href.startsWith('#')) {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Fullscreen functionality
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable fullscreen: ${err.message}`);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        // Update fullscreen button text
-        document.addEventListener('fullscreenchange', function() {
-            const btn = document.getElementById('fullscreen-btn');
-            if (document.fullscreenElement) {
-                btn.textContent = '⛶ Exit Fullscreen';
-            } else {
-                btn.textContent = '⛶ Fullscreen';
-            }
-        });
-
-        // Initialize galleries on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Galleries will load when clicked
-            console.log('Portfolio loaded successfully!');
-        });
-    </script>
+<script>
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.open).showModal()));
+document.querySelectorAll('dialog').forEach(d=>{
+  d.querySelector('.close').addEventListener('click',()=>d.close());
+  d.addEventListener('click',e=>{if(e.target===d)d.close()});
+});
+const lb=document.getElementById('lightbox');
+document.querySelectorAll('[data-full]').forEach(b=>b.addEventListener('click',()=>{
+  const img=b.querySelector('img');
+  lb.querySelector('img').src=b.dataset.full; lb.querySelector('img').alt=img.alt;
+  lb.querySelector('p').textContent=b.closest('figure').querySelector('figcaption').textContent;
+  lb.showModal();
+}));
+</script>
 </body>
 </html>
