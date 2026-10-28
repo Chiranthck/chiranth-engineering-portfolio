@@ -246,16 +246,19 @@ dialog[open]{animation:pop .22s ease-out}
         <img src="images/radish/field.jpg" alt="Radish experiment plots with drip irrigation lines in a coconut grove" loading="lazy" width="1400" height="1050">
       </button>
       <div>
-        <div class="badges"><span class="badge">Field research</span></div>
+        <div class="badges"><span class="badge gold">Research paper</span><span class="badge">Field research</span></div>
         <h3>Optimizing radish yield with Taguchi and Grey Relational Analysis</h3>
-        <p>A designed experiment on my farm testing seed variety, irrigation method and manure type with a Taguchi orthogonal array, then ranking treatments across length, count and weight together using Grey Relational Analysis.</p>
+        <p>A designed experiment on my farm testing seed variety, irrigation method and manure type with a Taguchi L9 orthogonal array, then ranking treatments across length, count and weight together using Grey Relational Analysis. Confirmation plots reproduced the predicted yield, and the work is written up as a research paper.</p>
         <dl class="result">
           <div><dt>0.8397</dt><dd>highest grey relational grade</dd></div>
           <div><dt>2.25 kg</dt><dd>yield weight, best treatment</dd></div>
           <div><dt>14.75 cm</dt><dd>average root length</dd></div>
         </dl>
         <ul class="tags"><li>Design of experiments</li><li>Taguchi method</li><li>Grey relational analysis</li><li>Agriculture</li></ul>
-        <button class="btn" data-open="dlg-radish">Read the details</button>
+        <div class="hero-actions" style="margin-top:0">
+          <a class="btn primary" href="papers/radish-taguchi-gra-paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+          <button class="btn" data-open="dlg-radish">Read the details</button>
+        </div>
       </div>
     </article>
 
@@ -390,13 +393,19 @@ dialog[open]{animation:pop .22s ease-out}
       <figure><button data-full="images/radish/drip-layout.jpg"><img src="images/radish/drip-layout.jpg" alt="Drip irrigation layout" loading="lazy"></button><figcaption>Drip irrigation layout</figcaption></figure>
       <figure><button data-full="images/radish/treatments.jpg"><img src="images/radish/treatments.jpg" alt="Harvested radish from treatments 1 to 9" loading="lazy"></button><figcaption>Harvest from each treatment</figcaption></figure>
     </div>
-    <h3>Overview</h3>
-    <p>I used a design of experiments approach to find the best way to grow radish on my farm. A Taguchi orthogonal array set out the treatment combinations across three factors — seed variety, irrigation method and manure type — so the effects could be measured with far fewer plots than testing every combination. Grey Relational Analysis then combined three yield measures (root length, count and weight) into a single grade to rank the treatments.</p>
+    <h3>Paper</h3>
+    <p><em>Optimizing Radish Crop Yield Using a Combinatorial Taguchi–Grey Relational Analysis Approach.</em> M. Shilpa, Chiranth K, Ann Xaviera Rego, Challa Srinivas Parthiv and Riya B. Department of Industrial Engineering and Management, Ramaiah Institute of Technology, Bengaluru.</p>
+    <p><a class="btn primary" href="papers/radish-taguchi-gra-paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a></p>
+    <h3>Why radish</h3>
+    <p>Radish matures in three to four weeks, which makes it well suited to early planting and intercropping, yet it gets little research attention because it is treated as a minor crop. Finding the best mix of inputs is usually done by slow trial and error.</p>
+    <h3>Method</h3>
+    <p>A Taguchi L9 orthogonal array set out nine treatment combinations of three factors — seed variety, irrigation method and manure composition — applied to randomized plots with two replications each. That covers the effects with nine treatments instead of all 27 combinations. Yield was measured three ways: root length, number of radishes and weight. Grey Relational Analysis combined the three into a single grade to rank the treatments.</p>
     <h3>Results</h3>
     <ul>
-      <li>Best combination: Trusted Seeds, drip irrigation and DAP manure</li>
-      <li>Average root length 14.75 cm, quantity 35.5, weight 2.25 kg</li>
-      <li>Grey relational grade 0.8397, the highest of all treatments</li>
+      <li>Best combination: Trusted Seeds, drip irrigation and DAP manure, with a grey relational grade of 0.84, the highest of the nine treatments</li>
+      <li>Seed variety had the largest effect on yield, followed by manure composition, then irrigation method</li>
+      <li>Experiment: average root length 14.75 cm, quantity 35.5, weight 2.25 kg</li>
+      <li>Confirmation run on four plots: 14.82 cm, 36 radishes and 2.31 kg, closely matching the prediction</li>
     </ul>
   </div>
 </dialog>
